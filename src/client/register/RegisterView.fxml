@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.register.RegisterController">
+   <children>
+      <Label layoutX="54.0" layoutY="56.0" text="用户名" />
+      <TextField fx:id="userNameField" layoutX="97.0" layoutY="52.0" prefHeight="23.0" prefWidth="139.0" />
+      <Label layoutX="57.0" layoutY="109.0" text="密码" />
+      <PasswordField fx:id="passwordField" layoutX="97.0" layoutY="105.0" prefHeight="23.0" prefWidth="139.0" />
+      <Label layoutX="39.0" layoutY="162.0" prefHeight="15.0" prefWidth="66.0" text="重复密码" />
+      <PasswordField fx:id="repeatPasswordField" layoutX="97.0" layoutY="158.0" prefHeight="23.0" prefWidth="139.0" />
+      <Button layoutX="196.0" layoutY="203.0" mnemonicParsing="false" onMouseClicked="#registerEnsureMouseAction" text="确定" />
+      <Label fx:id="userNameHintLabel" layoutX="97.0" layoutY="75.0" />
+      <Label fx:id="passwordHintLabel" layoutX="97.0" layoutY="128.0" />
+      <Label fx:id="repeatPasswordHintLabel" layoutX="97.0" layoutY="181.0" />
+      <Button layoutX="141.0" layoutY="203.0" mnemonicParsing="false" onMouseClicked="#backMouseAction" text="返回" />
+   </children>
+</Pane>
