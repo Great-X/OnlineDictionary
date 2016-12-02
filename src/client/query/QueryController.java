@@ -9,8 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.net.InterfaceAddress;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +23,7 @@ public class QueryController implements Initializable{
     private static HashMap<String, String> results;
 
     //点赞数
-    private static HashMap<String, Integer> favours = new HashMap<String, Integer>();
+    private static HashMap<String, Integer> favours = new HashMap<>();
 
     // 单词输入域
     @FXML
@@ -71,24 +74,9 @@ public class QueryController implements Initializable{
         resultTextArea.setWrapText(true);
 
         // 设置三个复选框的监听器
-        baiduCheckBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                showResult();
-            }
-        });
-        youdaoCheckBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                showResult();
-            }
-        });
-        biyingCheckBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                showResult();
-            }
-        });
+        baiduCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
+        youdaoCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
+        biyingCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
     }
 
 
@@ -125,12 +113,23 @@ public class QueryController implements Initializable{
             return;
         }
         results = client.Translate.translate(word);
-        //TODO:获取点赞数
-        favours.replace("baidu", 1);
-        favours.replace("youdao", 2);
-        favours.replace("biying", 3);
+
+        //获取点赞数
+        List<Integer> res = getFavoursNum(word);
+        favours.replace("baidu", res.get(0));
+        favours.replace("youdao", res.get(1));
+        favours.replace("biying", res.get(2));
 
         showResult();
+    }
+
+    /**
+     * TODO:从数据库获取某单词的点赞数
+     * @param word 该单词
+     * @return 长度为3的ArrayList,依次是百度，有道，必应的点赞数
+     */
+    private ArrayList<Integer> getFavoursNum(String word) {
+        return new ArrayList<Integer>(3);
     }
 
 

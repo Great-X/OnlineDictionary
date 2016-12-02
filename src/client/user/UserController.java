@@ -11,16 +11,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ResourceBundle;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.function.BooleanSupplier;
 
 
 public class UserController implements Initializable{
 
     // 定义存放所有用户的数组
-    public static ArrayList<UserObject> users = new ArrayList<UserObject>();
+    private static ArrayList<UserObject> users = new ArrayList<>();
 
     //显示用户列表
     @FXML
@@ -28,20 +26,21 @@ public class UserController implements Initializable{
 
     /**
      * stage初始化
-     * @param location
-     * @param resources
+     * @param location URL路径
+     * @param resources 资源
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // 加载所有用户
-        // TODO:从数据库获取用户在线信息
-        users.add(new UserObject("Clay", true));
-        users.add(new UserObject("Bob", false));
-        users.add(new UserObject("Alice", true));
+        try {
+            Map<String, Boolean> res = getAllUsers();
+            for(Map.Entry<String, Boolean> entry: res.entrySet()){
+                users.add(new UserObject(entry.getKey(), entry.getValue()));
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
-        /**
-         * 初始化用户列表
-         */
         Collections.sort(users);
         userList.setItems(FXCollections.observableList(users));
         userList.setCellFactory(new Callback<ListView<UserObject>, ListCell<UserObject>>() {
@@ -51,6 +50,14 @@ public class UserController implements Initializable{
             }
         });
 
+    }
+
+    /**
+     * TODO:从数据库获取用户在线信息
+     * @return HaspMap中每个元素代表一个用户，String为用户名，Boolean表示用户是否在线，在线为true，否则为false
+     */
+    private HashMap<String, Boolean> getAllUsers() {
+        return new HashMap<String, Boolean>();
     }
 
     /**

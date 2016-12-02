@@ -75,8 +75,12 @@ public class RegisterController implements Initializable{
         }
 
         // 判断用户申请的用户名是否已经存在
-        if(userNameExist(username)){
-           userNameHintLabel.setText("该用户名已存在！");
+        try {
+            if(userNameExist(username)){
+                userNameHintLabel.setText("该用户名已存在！");
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
 
         // 判断两次输入的密码是否相同
@@ -85,19 +89,32 @@ public class RegisterController implements Initializable{
             return;
         }
 
+        //保存用户到数据库
+        try {
+            saveUserData(username, password);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         // 注册成功，将用户数据写入数据库，切换到登录界面
-        // TODO: 将用户数据写入数据库
         Main.stageController.setStage("loginView", "registerView");
+    }
+
+    /**
+     * TODO: 注册成功，将用户数据写入数据库
+     * @param username 用户名
+     * @param password 密码
+     */
+    private void saveUserData(String username, String password) {
     }
 
 
     /**
-     * 检测用户申请的用户名是否已经存在
-     * @param username
-     * @return
+     * // TODO: 遍历数据库，看该username是否已经存在
+     * @param username 用户名
+     * @return 若该username存在则返回true，否则返回false
      */
     private boolean userNameExist(String username){
-        // TODO: 遍历数据库，看该username是否已经存在
         return false;
     }
 
