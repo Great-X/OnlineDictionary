@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +14,7 @@ import java.util.regex.Pattern;
  * 定义翻译类
  */
 public class Translate {
-    public static HashMap<String, String> translate(String word) {
+    public static HashMap<String, String> translate(String word) throws SomeException{
         HashMap<String, String> results = new HashMap<String, String>();
 
         //获取百度词典释义
@@ -35,6 +36,10 @@ public class Translate {
         });
 
         while(results.size() != 3);
+        for(Map.Entry<String, String> entry: results.entrySet()){
+            if(entry.getValue().length() == 0)
+                throw new SomeException("没有找到该单词");
+        }
         return results;
     }
 

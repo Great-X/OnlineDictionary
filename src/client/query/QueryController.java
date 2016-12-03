@@ -1,15 +1,13 @@
 package client.query;
 
 import client.Main;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import client.SomeException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.net.InterfaceAddress;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -112,7 +110,12 @@ public class QueryController implements Initializable{
             hintLabel.setText("请输入英文单词！");
             return;
         }
-        results = client.Translate.translate(word);
+        try {
+            results = client.Translate.translate(word);
+        } catch (SomeException e) {
+            hintLabel.setText(e.getMessage());
+            return;
+        }
 
         //获取点赞数
         List<Integer> res = getFavoursNum(word);

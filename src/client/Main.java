@@ -24,7 +24,7 @@ public class Main extends Application {
         stageController.loadStage("msgView", "message/MsgView.fxml");
 
         // 显示登陆窗口
-        stageController.setStage("loginView");
+        stageController.setStage("queryView");
     }
 
 
