@@ -5,14 +5,18 @@ import client.SomeException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.awt.*;
+import java.awt.peer.CheckboxPeer;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,25 +25,27 @@ public class QueryController implements Initializable{
     private static HashMap<String, String> results;
 
     //点赞数
-    private static HashMap<String, Integer> favours = new HashMap<>();
+    private static HashMap<String, Integer> favours = new LinkedHashMap<>();
 
     // 单词输入域
     @FXML
     public TextField inputTextField;
 
     // 搜索结果显示区域
+    public TextArea[] resultTextAreas = new TextArea[3];
     @FXML
-    public TextArea resultTextArea;
+    public TextArea resultTextArea0;
+    @FXML
+    public TextArea resultTextArea1;
+    @FXML
+    public TextArea resultTextArea2;
 
-    //百度复选框
+    //复选框
+    public CheckBox[] checkBoxs = new CheckBox[3];
     @FXML
     public CheckBox baiduCheckBox;
-
-    //有道复选框
     @FXML
     public CheckBox youdaoCheckBox;
-
-    //必应复选框
     @FXML
     public CheckBox biyingCheckBox;
 
@@ -52,8 +58,13 @@ public class QueryController implements Initializable{
     public Label hintLabel;
 
     //显示翻译的工具
+    public Label[] toolLabels = new Label[3];
     @FXML
-    public Label toolLabel;
+    public Label toolLabel0;
+    @FXML
+    public Label toolLabel1;
+    @FXML
+    public Label toolLabel2;
 
     /**
      * stage初始化
@@ -66,15 +77,24 @@ public class QueryController implements Initializable{
         favours.put("baidu", 0);
         favours.put("youdao", 0);
         favours.put("biying", 0);
-        baiduCheckBox.setSelected(true);
-        youdaoCheckBox.setSelected(true);
-        biyingCheckBox.setSelected(true);
-        resultTextArea.setWrapText(true);
+        checkBoxs[0] = baiduCheckBox;
+        checkBoxs[1] = youdaoCheckBox;
+        checkBoxs[2] = biyingCheckBox;
+        resultTextAreas[0] = resultTextArea0;
+        resultTextAreas[1] = resultTextArea1;
+        resultTextAreas[2] = resultTextArea2;
+        toolLabels[0] = toolLabel0;
+        toolLabels[1] = toolLabel1;
+        toolLabels[2] = toolLabel2;
+
+        for(CheckBox checkBox: checkBoxs)
+            checkBox.setSelected(true);
+        for(TextArea resultTextArea: resultTextAreas)
+            resultTextArea.setWrapText(true);
 
         // 设置三个复选框的监听器
-        baiduCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
-        youdaoCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
-        biyingCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
+        for(CheckBox checkBox: checkBoxs)
+            checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
     }
 
 
@@ -122,6 +142,14 @@ public class QueryController implements Initializable{
         favours.replace("baidu", res.get(0));
         favours.replace("youdao", res.get(1));
         favours.replace("biying", res.get(2));
+
+        //根据点赞数排序
+        ArrayList<Map.Entry<String, Integer>> list = new ArrayList<>(favours.entrySet());
+        Collections.sort(list, (o1, o2) -> o2.getValue() - o1.getValue());
+        favours.clear();
+        for(Map.Entry<String, Integer> entry: list){
+            favours.put(entry.getKey(), entry.getValue());
+        }
 
         showResult();
     }
@@ -187,21 +215,39 @@ public class QueryController implements Initializable{
      * 根据复选框和用户点赞数量显示结果
      */
     private void showResult(){
-        if(baiduCheckBox.isSelected()){
-            toolLabel.setText("百度");
-            resultTextArea.setText(results.get("baidu"));
-        }
-        else if(youdaoCheckBox.isSelected()){
-            toolLabel.setText("有道");
-            resultTextArea.setText(results.get("youdao"));
-        }
-        else if(biyingCheckBox.isSelected()){
-            toolLabel.setText("必应");
-            resultTextArea.setText(results.get("biying"));
-        }
-        else{
-            toolLabel.setText("百度");
-            resultTextArea.setText(results.get("baidu"));
+        //初始化
+        for(Label toolLabel: toolLabels)
+            toolLabel.setText("");
+        for(TextArea resultTextArea: resultTextAreas)
+            resultTextArea.setVisible(false);
+
+        int index = 0;
+        for(Map.Entry<String, Integer> entry: favours.entrySet()){
+            String tool = entry.getKey();
+            if(tool.equals("baidu")){
+                if(!baiduCheckBox.isSelected())
+                    continue;
+                toolLabels[index].setText("百度");
+                resultTextAreas[index].setVisible(true);
+                resultTextAreas[index].setText(results.get("baidu"));
+                index ++;
+            }
+            else if(tool.equals("youdao")){
+                if(!youdaoCheckBox.isSelected())
+                    continue;
+                toolLabels[index].setText("有道");
+                resultTextAreas[index].setVisible(true);
+                resultTextAreas[index].setText(results.get("youdao"));
+                index ++;
+            }
+            else if(tool.equals("biying")){
+                if(!biyingCheckBox.isSelected())
+                    continue;
+                toolLabels[index].setText("必应");
+                resultTextAreas[index].setVisible(true);
+                resultTextAreas[index].setText(results.get("biying"));
+                index ++;
+            }
         }
     }
 }
