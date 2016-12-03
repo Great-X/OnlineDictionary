@@ -1,5 +1,6 @@
 package client.user;
 
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
@@ -10,12 +11,12 @@ import javafx.scene.paint.Color;
  */
 public class UserListCell extends ListCell<UserObject> {
     HBox hbox = new HBox();
-    Label userNameLable = new Label();
+    CheckBox userNameBox = new CheckBox();
     String lastItem;
 
     public UserListCell(){
         super();
-        hbox.getChildren().addAll(userNameLable);
+        hbox.getChildren().addAll(userNameBox);
     }
 
 
@@ -35,11 +36,17 @@ public class UserListCell extends ListCell<UserObject> {
         else{
             lastItem = item.toString();
             if(item == null){
-                userNameLable.setText("<null>");
+                userNameBox.setText("<null>");
             }
             else {
-                userNameLable.setText(item.getName());
-                userNameLable.setTextFill(item.getStatus()== true? Color.BLUE:Color.GRAY);
+                userNameBox.setText(item.getName());
+                userNameBox.setTextFill(item.getStatus()== true? Color.BLUE:Color.GRAY);
+                userNameBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                    if(newValue)
+                        UserController.sendToUsers.add(item.getName());
+                    else
+                        UserController.sendToUsers.remove(item.getName());
+                });
             }
             setGraphic(hbox);
         }

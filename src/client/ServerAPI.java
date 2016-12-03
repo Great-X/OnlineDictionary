@@ -1,8 +1,10 @@
 package client;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //定义服务器接口，处理服务器和数据库相关事务
 public class ServerAPI {
@@ -89,7 +91,22 @@ public class ServerAPI {
      * @return HaspMap中每个元素代表一个用户，String为用户名，Boolean表示用户是否在线，在线为true，否则为false
      */
     public static HashMap<String, Boolean> getAllUsers() {
-        return new HashMap<String, Boolean>();
+        HashMap<String, Boolean> allUsers = new HashMap<>();
+        //下面代码需要被替换
+        allUsers.put("Alice", true);
+        allUsers.put("Bob", false);
+        allUsers.put("Chris", true);
+
+        return allUsers;
     }
+
+
+    /**
+     * TODO:分享单词卡
+     * @param file 被发送的单词卡
+     * @param sender 发送方
+     * @param receiver 接收方数组
+     */
+    public static void shareWordCard(File file, String sender, String[] receiver){}
 
 }

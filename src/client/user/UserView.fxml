@@ -6,9 +6,10 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.user.UserController">
    <children>
-      <Button layoutX="146.0" layoutY="363.0" mnemonicParsing="false" onMouseClicked="#backMouseAction" text="返回" />
       <Label layoutX="25.0" layoutY="54.0" text="所有用户" />
       <ListView fx:id="userList" layoutX="25.0" layoutY="85.0" prefHeight="257.0" prefWidth="152.0" />
+      <Button layoutX="137.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#backMouseAction" text="返回" />
+      <Button fx:id="ensureButton" layoutX="25.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#ensureMouseAction" text="确定" />
          
    </children>
 </Pane>

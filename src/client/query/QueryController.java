@@ -3,17 +3,23 @@ package client.query;
 import client.Main;
 import client.ServerAPI;
 import client.SomeException;
+import client.user.UserController;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.peer.CheckboxPeer;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -24,7 +30,7 @@ import java.util.regex.Pattern;
 
 public class QueryController implements Initializable{
     //搜索结果
-    private static HashMap<String, String> results;
+    private static HashMap<String, String> results = new LinkedHashMap<>();
 
     //点赞数
     private static HashMap<String, Integer> favours = new LinkedHashMap<>();
@@ -78,7 +84,9 @@ public class QueryController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        results = null;
+        results.put("baidu", "");
+        results.put("youdao", "");
+        results.put("biying", "");
         favours.put("baidu", 0);
         favours.put("youdao", 0);
         favours.put("biying", 0);
@@ -94,6 +102,9 @@ public class QueryController implements Initializable{
         toolLabels[0] = toolLabel0;
         toolLabels[1] = toolLabel1;
         toolLabels[2] = toolLabel2;
+        toolLabel0.setText("百度");
+        toolLabel1.setText("有道");
+        toolLabel2.setText("必应");
 
         for(CheckBox checkBox: checkBoxs)
             checkBox.setSelected(true);
@@ -207,6 +218,15 @@ public class QueryController implements Initializable{
      */
     @FXML
     public void shareMouseAction(MouseEvent mouseEvent) {
+        WritableImage image = resultTextAreas[0].snapshot(new SnapshotParameters(), null);
+        File file = new File("share.png");
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        Main.stageController.setStage("userView", "queryView");
     }
 
 
