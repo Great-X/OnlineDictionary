@@ -1,6 +1,7 @@
 package client.register;
 
 import client.Main;
+import client.ServerAPI;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -76,7 +77,7 @@ public class RegisterController implements Initializable{
 
         // 判断用户申请的用户名是否已经存在
         try {
-            if(userNameExist(username)){
+            if(ServerAPI.userNameExist(username)){
                 userNameHintLabel.setText("该用户名已存在！");
             }
         }catch (Exception e){
@@ -91,7 +92,7 @@ public class RegisterController implements Initializable{
 
         //保存用户到数据库
         try {
-            saveUserData(username, password);
+            ServerAPI.saveUserData(username, password);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -100,23 +101,6 @@ public class RegisterController implements Initializable{
         Main.stageController.setStage("loginView", "registerView");
     }
 
-    /**
-     * TODO: 注册成功，将用户数据写入数据库
-     * @param username 用户名
-     * @param password 密码
-     */
-    private void saveUserData(String username, String password) {
-    }
-
-
-    /**
-     * // TODO: 遍历数据库，看该username是否已经存在
-     * @param username 用户名
-     * @return 若该username存在则返回true，否则返回false
-     */
-    private boolean userNameExist(String username){
-        return false;
-    }
 
     /**
      * 返回按钮点击事件

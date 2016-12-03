@@ -1,6 +1,7 @@
 package client.login;
 
 import client.Main;
+import client.ServerAPI;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -35,6 +36,7 @@ public class LoginController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
     }
 
+
     /**
      * 登录按钮点击事件
      */
@@ -43,7 +45,7 @@ public class LoginController implements Initializable{
         hintLabel.setText("");
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if(checkPassword(username, password)) {
+        if(ServerAPI.checkPassword(username, password)) {
             Main.isOnline = true;
             Main.userName = username;
             Main.stageController.setStage("queryView", "loginView");
@@ -51,16 +53,6 @@ public class LoginController implements Initializable{
         else{
             hintLabel.setText("用户名/密码输入错误！");
         }
-    }
-
-    /**
-     * TODO:从数据库中检查用户名和密码是否匹配
-     * @param username 用户名
-     * @param password 密码
-     * @return 匹配则返回true， 否则返回false
-     */
-    private boolean checkPassword(String username, String password) {
-        return true;
     }
 
 

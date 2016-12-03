@@ -1,6 +1,7 @@
 package client.query;
 
 import client.Main;
+import client.ServerAPI;
 import client.SomeException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -121,6 +122,8 @@ public class QueryController implements Initializable{
      */
     @FXML
     public void logoutButtonAction(MouseEvent mouseEvent) {
+        Main.isOnline = false;
+        Main.userName = "";
         Main.stageController.setStage("loginView", "queryView");
     }
 
@@ -145,13 +148,13 @@ public class QueryController implements Initializable{
         }
 
         //获取点赞数
-        List<Integer> favoursTmp = getFavoursNum(word);
+        List<Integer> favoursTmp = ServerAPI.getFavoursNum(word);
         favours.replace("baidu", favoursTmp.get(0));
         favours.replace("youdao", favoursTmp.get(1));
         favours.replace("biying", favoursTmp.get(2));
 
         //检查该用户之前有没有对该单词点赞
-        List<Boolean> userFavourTmp = getUserFavour(Main.userName, word);
+        List<Boolean> userFavourTmp = ServerAPI.getUserFavour(Main.userName, word);
         userFavour.replace("baidu", userFavourTmp.get(0));
         userFavour.replace("youdao", userFavourTmp.get(1));
         userFavour.replace("biying", userFavourTmp.get(2));
@@ -172,39 +175,6 @@ public class QueryController implements Initializable{
         }
 
         showResult();
-    }
-
-
-    /**
-     * TODO:从数据库中获取当前用户对当前单词的点赞情况
-     * @param userName 用户名
-     * @param word 单词
-     * @return 长度为3的ArrayList，依次是百度，有道，必应的点赞情况，点过赞则为true，否则为false
-     */
-    private List<Boolean> getUserFavour(String userName, String word) {
-        ArrayList<Boolean> userFavour = new ArrayList<>();
-        //下面代码需要被替换
-        userFavour.add(true);
-        userFavour.add(false);
-        userFavour.add(true);
-
-        return userFavour;
-    }
-
-
-    /**
-     * TODO:从数据库获取某单词的点赞数
-     * @param word 该单词
-     * @return 长度为3的ArrayList,依次是百度，有道，必应的点赞数
-     */
-    private ArrayList<Integer> getFavoursNum(String word) {
-        ArrayList<Integer> favoursNum = new ArrayList<Integer>(3);
-        //下面代码需要被替换
-        favoursNum.add(1);
-        favoursNum.add(2);
-        favoursNum.add(3);
-
-        return favoursNum;
     }
 
 
