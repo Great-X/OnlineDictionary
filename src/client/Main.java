@@ -3,9 +3,15 @@ package client;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+
 public class Main extends Application {
     // 定义一个stage管理器
     public static StageController stageController = new StageController();
+
+    // 定义一个线程池
+    public static ExecutorService threadPool = Executors.newCachedThreadPool();
 
     @Override
     public void start(Stage primaryStage) throws Exception{

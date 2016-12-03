@@ -58,6 +58,7 @@ public class StageController {
             tempStage.setScene(tempScene);
             tempStage.setResizable(false);
             tempStage.setTitle("我的词典");
+            tempStage.setOnCloseRequest(event -> System.exit(0));
 
             //配置initStyle
             for (StageStyle style : styles) {

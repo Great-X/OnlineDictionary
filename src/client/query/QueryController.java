@@ -129,7 +129,14 @@ public class QueryController implements Initializable{
      * @return 长度为3的ArrayList,依次是百度，有道，必应的点赞数
      */
     private ArrayList<Integer> getFavoursNum(String word) {
-        return new ArrayList<Integer>(3);
+        ArrayList<Integer> favoursNum = new ArrayList<Integer>(3);
+
+        //下面代码需要被替换
+        favoursNum.add(1);
+        favoursNum.add(2);
+        favoursNum.add(3);
+
+        return favoursNum;
     }
 
 

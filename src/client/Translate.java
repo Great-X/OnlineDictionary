@@ -14,13 +14,27 @@ import java.util.regex.Pattern;
  */
 public class Translate {
     public static HashMap<String, String> translate(String word) {
-        String baiduResult = baiduTranslate(word);
-        String youdaoResult = youdaoTranslate(word);
-        String biyingResult = biyingTranslate(word);
         HashMap<String, String> results = new HashMap<String, String>();
-        results.put("baidu", baiduResult);
-        results.put("youdao", youdaoResult);
-        results.put("biying", biyingResult);
+
+        //获取百度词典释义
+        Main.threadPool.execute(() -> {
+            String baiduResult = baiduTranslate(word);
+            results.put("baidu", baiduResult);
+        });
+
+        //获取有道词典释义
+        Main.threadPool.execute(() -> {
+            String youdaoResult = youdaoTranslate(word);
+            results.put("youdao", youdaoResult);
+        });
+
+        //获取必应词典释义
+        Main.threadPool.execute(() -> {
+            String biyingResult = biyingTranslate(word);
+            results.put("biying", biyingResult);
+        });
+
+        while(results.size() != 3);
         return results;
     }
 
