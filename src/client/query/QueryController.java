@@ -5,6 +5,8 @@ import client.ServerAPI;
 import client.SomeException;
 import client.user.UserController;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.SnapshotParameters;
@@ -29,6 +31,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class QueryController implements Initializable{
+    //当前单词
+    private static String curWord = "";
+
     //搜索结果
     private static HashMap<String, String> results = new LinkedHashMap<>();
 
@@ -61,8 +66,22 @@ public class QueryController implements Initializable{
     public CheckBox biyingCheckBox;
 
     //点赞按钮
+    public Button[] favourButtons = new Button[3];
     @FXML
-    public Button favourButton;
+    public Button favourButton0;
+    @FXML
+    public Button favourButton1;
+    @FXML
+    public Button favourButton2;
+
+    //分享按钮
+    public Button[] shareButtons = new Button[3];
+    @FXML
+    public Button shareButton0;
+    @FXML
+    public Button shareButton1;
+    @FXML
+    public Button shareButton2;
 
     //输入出错时提示
     @FXML
@@ -76,6 +95,14 @@ public class QueryController implements Initializable{
     public Label toolLabel1;
     @FXML
     public Label toolLabel2;
+
+    /**
+     * 返回当前单词
+     * @return
+     */
+    public static String getCurWord(){
+        return curWord;
+    }
 
     /**
      * stage初始化
@@ -93,6 +120,7 @@ public class QueryController implements Initializable{
         userFavour.put("baidu", false);
         userFavour.put("youdao", false);
         userFavour.put("biying", false);
+
         checkBoxs[0] = baiduCheckBox;
         checkBoxs[1] = youdaoCheckBox;
         checkBoxs[2] = biyingCheckBox;
@@ -102,6 +130,13 @@ public class QueryController implements Initializable{
         toolLabels[0] = toolLabel0;
         toolLabels[1] = toolLabel1;
         toolLabels[2] = toolLabel2;
+        favourButtons[0] = favourButton0;
+        favourButtons[1] = favourButton1;
+        favourButtons[2] = favourButton2;
+        shareButtons[0] = shareButton0;
+        shareButtons[1] = shareButton1;
+        shareButtons[2] = shareButton2;
+
         toolLabel0.setText("百度");
         toolLabel1.setText("有道");
         toolLabel2.setText("必应");
@@ -114,6 +149,31 @@ public class QueryController implements Initializable{
         // 设置三个复选框的监听器
         for(CheckBox checkBox: checkBoxs)
             checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
+
+        for(int i = 0; i < 3; i++) {
+            int finalI = i;
+            //设置分享按钮的监听器
+            shareButtons[i].setOnAction(event -> {
+                if(curWord.length() == 0){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("单词卡不能为空!");
+                    alert.showAndWait();
+                    return;
+                }
+                WritableImage image = resultTextAreas[finalI].snapshot(new SnapshotParameters(), null);
+                try {
+                    ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", new File(curWord + ".png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
+                Main.stageController.setStage("userView", "queryView");
+            });
+
+            //设置点赞按钮的监听器
+            favourButtons[i].setOnAction(event -> {});
+        }
+
     }
 
 
@@ -147,26 +207,26 @@ public class QueryController implements Initializable{
     @FXML
     public void searchMouseAction(MouseEvent mouseEvent) throws IOException {
         hintLabel.setText("");
-        String word = inputTextField.getText();
-        if(!isLegal(word)){
+        curWord = inputTextField.getText();
+        if(!isLegal(curWord)){
             hintLabel.setText("请输入英文单词！");
             return;
         }
         try {
-            results = client.Translate.translate(word);
+            results = client.Translate.translate(curWord);
         } catch (SomeException e) {
             hintLabel.setText(e.getMessage());
             return;
         }
 
         //获取点赞数
-        List<Integer> favoursTmp = ServerAPI.getFavoursNum(word);
+        List<Integer> favoursTmp = ServerAPI.getFavoursNum(curWord);
         favours.replace("baidu", favoursTmp.get(0));
         favours.replace("youdao", favoursTmp.get(1));
         favours.replace("biying", favoursTmp.get(2));
 
         //检查该用户之前有没有对该单词点赞
-        List<Boolean> userFavourTmp = ServerAPI.getUserFavour(Main.userName, word);
+        List<Boolean> userFavourTmp = ServerAPI.getUserFavour(Main.userName, curWord);
         userFavour.replace("baidu", userFavourTmp.get(0));
         userFavour.replace("youdao", userFavourTmp.get(1));
         userFavour.replace("biying", userFavourTmp.get(2));
@@ -213,33 +273,6 @@ public class QueryController implements Initializable{
 
 
     /**
-     * 分享按钮点击事件
-     * @param mouseEvent
-     */
-    @FXML
-    public void shareMouseAction(MouseEvent mouseEvent) {
-        WritableImage image = resultTextAreas[0].snapshot(new SnapshotParameters(), null);
-        File file = new File("share.png");
-        try {
-            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-        Main.stageController.setStage("userView", "queryView");
-    }
-
-
-    /**
-     * 点赞按钮点击事件
-     * @param mouseEvent
-     */
-    @FXML
-    public void favourMouseAction(MouseEvent mouseEvent) {
-    }
-
-
-    /**
      * 根据复选框和用户点赞数量显示结果
      */
     private void showResult(){
@@ -248,6 +281,10 @@ public class QueryController implements Initializable{
             toolLabel.setText("");
         for(TextArea resultTextArea: resultTextAreas)
             resultTextArea.setVisible(false);
+        for(Button favourButton: favourButtons)
+            favourButton.setVisible(false);
+        for(Button shareButton: shareButtons)
+            shareButton.setVisible(false);
 
         int index = 0;
         for(Map.Entry<String, Integer> entry: favours.entrySet()){
@@ -255,27 +292,37 @@ public class QueryController implements Initializable{
             if(tool.equals("baidu")){
                 if(!baiduCheckBox.isSelected())
                     continue;
-                toolLabels[index].setText("百度");
-                resultTextAreas[index].setVisible(true);
-                resultTextAreas[index].setText(results.get("baidu"));
+                showUI(tool, index);
                 index ++;
             }
             else if(tool.equals("youdao")){
                 if(!youdaoCheckBox.isSelected())
                     continue;
-                toolLabels[index].setText("有道");
-                resultTextAreas[index].setVisible(true);
-                resultTextAreas[index].setText(results.get("youdao"));
+                showUI(tool, index);
                 index ++;
             }
             else if(tool.equals("biying")){
                 if(!biyingCheckBox.isSelected())
                     continue;
-                toolLabels[index].setText("必应");
-                resultTextAreas[index].setVisible(true);
-                resultTextAreas[index].setText(results.get("biying"));
+                showUI(tool, index);
                 index ++;
             }
         }
+    }
+    /**
+     * 显示UI控件
+     * @param tool 搜索网站名
+     * @param index 控件下标
+     */
+    private void showUI(String tool, int index){
+        Map<String, String> name = new HashMap<>();
+        name.put("baidu", "百度");
+        name.put("youdao", "有道");
+        name.put("biying", "必应");
+        toolLabels[index].setText(name.get(tool));
+        resultTextAreas[index].setVisible(true);
+        favourButtons[index].setVisible(true);
+        shareButtons[index].setVisible(true);
+        resultTextAreas[index].setText(results.get(tool));
     }
 }

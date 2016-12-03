@@ -2,6 +2,7 @@ package client.user;
 
 import client.Main;
 import client.ServerAPI;
+import client.query.QueryController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -76,7 +77,8 @@ public class UserController implements Initializable{
      */
     public void ensureMouseAction(MouseEvent mouseEvent) {
         Main.threadPool.execute(() -> {
-            ServerAPI.shareWordCard(new File("share.png"), Main.userName, (String[]) sendToUsers.toArray(new String[0]));
+            String word = QueryController.getCurWord();
+            ServerAPI.shareWordCard(word, new File(word + ".png"), Main.userName, (String[]) sendToUsers.toArray(new String[0]));
         });
         Main.stageController.setStage("queryView", "userView");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

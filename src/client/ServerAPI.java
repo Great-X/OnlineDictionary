@@ -103,10 +103,11 @@ public class ServerAPI {
 
     /**
      * TODO:分享单词卡
-     * @param file 被发送的单词卡
+     * @param word 所发送的单词
+     * @param file 被发送的单词卡图片
      * @param sender 发送方
      * @param receiver 接收方数组
      */
-    public static void shareWordCard(File file, String sender, String[] receiver){}
+    public static void shareWordCard(String word, File file, String sender, String[] receiver){}
 
 }

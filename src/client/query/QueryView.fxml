@@ -15,8 +15,6 @@
       <CheckBox fx:id="baiduCheckBox" layoutX="104.0" layoutY="127.0" mnemonicParsing="false" text="百度" />
       <CheckBox fx:id="youdaoCheckBox" layoutX="219.0" layoutY="127.0" mnemonicParsing="false" text="有道" />
       <CheckBox fx:id="biyingCheckBox" layoutX="322.0" layoutY="127.0" mnemonicParsing="false" text="必应" />
-      <Button fx:id="favourButton" layoutX="389.0" layoutY="201.0" mnemonicParsing="false" onMouseClicked="#favourMouseAction" text="点赞" />
-      <Button layoutX="389.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#shareMouseAction" text="分享" />
       <Label fx:id="hintLabel" layoutX="121.0" layoutY="100.0" />
       <TextArea fx:id="resultTextArea0" editable="false" layoutX="84.0" layoutY="180.0" prefHeight="100.0" prefWidth="305.0" />
       <TextArea fx:id="resultTextArea1" editable="false" layoutX="84.0" layoutY="300.0" prefHeight="100.0" prefWidth="305.0" />
@@ -24,5 +22,11 @@
       <Label fx:id="toolLabel0" layoutX="16.0" layoutY="182.0" prefHeight="15.0" prefWidth="55.0" />
       <Label fx:id="toolLabel1" layoutX="16.0" layoutY="300.0" prefHeight="15.0" prefWidth="55.0" />
       <Label fx:id="toolLabel2" layoutX="16.0" layoutY="421.0" prefHeight="15.0" prefWidth="55.0" />
+      <Button fx:id="shareButton0" layoutX="389.0" layoutY="178.0" mnemonicParsing="false" text="分享" />
+      <Button fx:id="shareButton1" layoutX="389.0" layoutY="296.0" mnemonicParsing="false" text="分享" />
+      <Button fx:id="shareButton2" layoutX="389.0" layoutY="417.0" mnemonicParsing="false" text="分享" />
+      <Button fx:id="favourButton0" layoutX="389.0" layoutY="201.0" mnemonicParsing="false" text="点赞" />
+      <Button fx:id="favourButton1" layoutX="389.0" layoutY="319.0" mnemonicParsing="false" text="点赞" />
+      <Button fx:id="favourButton2" layoutX="389.0" layoutY="440.0" mnemonicParsing="false" text="点赞" />
    </children>
 </Pane>
