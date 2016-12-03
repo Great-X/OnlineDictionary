@@ -41,7 +41,11 @@ public class LoginController implements Initializable{
     @FXML
     public void loginButtonAction(MouseEvent event){
         hintLabel.setText("");
-        if(checkPassword()) {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        if(checkPassword(username, password)) {
+            Main.isOnline = true;
+            Main.userName = username;
             Main.stageController.setStage("queryView", "loginView");
         }
         else{
@@ -49,13 +53,13 @@ public class LoginController implements Initializable{
         }
     }
 
-
-    /*
-    * 检查用户名和密码是否匹配
-    * */
-    private boolean checkPassword() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+    /**
+     * TODO:从数据库中检查用户名和密码是否匹配
+     * @param username 用户名
+     * @param password 密码
+     * @return 匹配则返回true， 否则返回false
+     */
+    private boolean checkPassword(String username, String password) {
         return true;
     }
 

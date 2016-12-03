@@ -13,6 +13,10 @@ public class Main extends Application {
     // 定义一个线程池
     public static ExecutorService threadPool = Executors.newCachedThreadPool();
 
+    //定义当前用户
+    public static Boolean isOnline = false;
+    public static String userName = "";
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 

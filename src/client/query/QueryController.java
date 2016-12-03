@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +27,9 @@ public class QueryController implements Initializable{
 
     //点赞数
     private static HashMap<String, Integer> favours = new LinkedHashMap<>();
+
+    //该用户对当前单词的点赞情况
+    private static HashMap<String, Boolean> userFavour = new LinkedHashMap<>();
 
     // 单词输入域
     @FXML
@@ -77,6 +81,9 @@ public class QueryController implements Initializable{
         favours.put("baidu", 0);
         favours.put("youdao", 0);
         favours.put("biying", 0);
+        userFavour.put("baidu", false);
+        userFavour.put("youdao", false);
+        userFavour.put("biying", false);
         checkBoxs[0] = baiduCheckBox;
         checkBoxs[1] = youdaoCheckBox;
         checkBoxs[2] = biyingCheckBox;
@@ -138,14 +145,27 @@ public class QueryController implements Initializable{
         }
 
         //获取点赞数
-        List<Integer> res = getFavoursNum(word);
-        favours.replace("baidu", res.get(0));
-        favours.replace("youdao", res.get(1));
-        favours.replace("biying", res.get(2));
+        List<Integer> favoursTmp = getFavoursNum(word);
+        favours.replace("baidu", favoursTmp.get(0));
+        favours.replace("youdao", favoursTmp.get(1));
+        favours.replace("biying", favoursTmp.get(2));
+
+        //检查该用户之前有没有对该单词点赞
+        List<Boolean> userFavourTmp = getUserFavour(Main.userName, word);
+        userFavour.replace("baidu", userFavourTmp.get(0));
+        userFavour.replace("youdao", userFavourTmp.get(1));
+        userFavour.replace("biying", userFavourTmp.get(2));
 
         //根据点赞数排序
         ArrayList<Map.Entry<String, Integer>> list = new ArrayList<>(favours.entrySet());
-        Collections.sort(list, (o1, o2) -> o2.getValue() - o1.getValue());
+        Collections.sort(list, (o1, o2) -> {
+            if(userFavour.get(o1.getKey()) && !userFavour.get(o2.getKey()))
+                return -1;
+            else if(!userFavour.get(o1.getKey()) && userFavour.get(o2.getKey()))
+                return 1;
+            else
+                return o2.getValue() - o1.getValue();
+        });
         favours.clear();
         for(Map.Entry<String, Integer> entry: list){
             favours.put(entry.getKey(), entry.getValue());
@@ -154,6 +174,24 @@ public class QueryController implements Initializable{
         showResult();
     }
 
+
+    /**
+     * TODO:从数据库中获取当前用户对当前单词的点赞情况
+     * @param userName 用户名
+     * @param word 单词
+     * @return 长度为3的ArrayList，依次是百度，有道，必应的点赞情况，点过赞则为true，否则为false
+     */
+    private List<Boolean> getUserFavour(String userName, String word) {
+        ArrayList<Boolean> userFavour = new ArrayList<>();
+        //下面代码需要被替换
+        userFavour.add(true);
+        userFavour.add(false);
+        userFavour.add(true);
+
+        return userFavour;
+    }
+
+
     /**
      * TODO:从数据库获取某单词的点赞数
      * @param word 该单词
@@ -161,7 +199,6 @@ public class QueryController implements Initializable{
      */
     private ArrayList<Integer> getFavoursNum(String word) {
         ArrayList<Integer> favoursNum = new ArrayList<Integer>(3);
-
         //下面代码需要被替换
         favoursNum.add(1);
         favoursNum.add(2);
