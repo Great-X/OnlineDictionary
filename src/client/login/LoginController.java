@@ -48,6 +48,7 @@ public class LoginController implements Initializable{
         if(ServerAPI.checkPassword(username, password)) {
             Main.isOnline = true;
             Main.userName = username;
+            ServerAPI.userOnline(username);
             Main.stageController.setStage("queryView", "loginView");
         }
         else{

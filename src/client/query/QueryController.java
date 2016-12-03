@@ -122,6 +122,7 @@ public class QueryController implements Initializable{
      */
     @FXML
     public void logoutButtonAction(MouseEvent mouseEvent) {
+        ServerAPI.userOffline(Main.userName);
         Main.isOnline = false;
         Main.userName = "";
         Main.stageController.setStage("loginView", "queryView");

@@ -38,6 +38,20 @@ public class ServerAPI {
 
 
     /**
+     * TODO: 将用户状态设置为在线
+     * @param username 用户名
+     */
+    public static void userOnline(String username){}
+
+
+    /**
+     * TODO:将用户状态设置为离线
+     * @param username 用户名
+     */
+    public static void userOffline(String username){}
+
+
+    /**
      * TODO:从数据库中获取当前用户对当前单词的点赞情况
      * @param userName 用户名
      * @param word 单词
