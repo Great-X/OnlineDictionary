@@ -82,6 +82,8 @@ public class StageController {
      * @return 是否显示成功
      */
     public boolean setStage(String name) {
+        Main.curStage = name;
+        loadStage(name, Main.stages.get(name));
         this.getStage(name).show();
         return true;
     }

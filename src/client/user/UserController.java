@@ -41,6 +41,7 @@ public class UserController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        users.clear();
         // 加载所有用户
         try {
             Map<String, Boolean> res = ServerAPI.getAllUsers();
