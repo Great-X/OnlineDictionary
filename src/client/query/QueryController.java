@@ -151,6 +151,9 @@ public class QueryController implements Initializable{
             checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
 
         for(int i = 0; i < 3; i++) {
+            shareButtons[i].setVisible(false);
+            favourButtons[i].setVisible(false);
+
             int finalI = i;
             //设置分享按钮的监听器
             shareButtons[i].setOnAction(event -> {

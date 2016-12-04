@@ -6,12 +6,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.query.QueryController">
    <children>
-      <TextField fx:id="inputTextField" layoutX="119.0" layoutY="65.0" prefHeight="35.0" prefWidth="225.0" />
-      <Button layoutX="24.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#logoutButtonAction" text="注销" />
-      <Button layoutX="344.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#userButtonAction" text="好友" />
-      <Button layoutX="389.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#messageMouseAction" text="消息" />
-      <Button layoutX="375.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#searchMouseAction" prefHeight="35.0" prefWidth="55.0" text="搜索" />
-      <Label layoutX="71.0" layoutY="65.0" prefHeight="35.0" prefWidth="48.0" text="INPUT:" />
+      <TextField fx:id="inputTextField" layoutX="84.0" layoutY="65.0" prefHeight="35.0" prefWidth="305.0" />
+      <Button layoutX="414.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#logoutButtonAction" text="注销" />
+      <Button layoutX="414.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#userButtonAction" text="好友" />
+      <Button layoutX="414.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#messageMouseAction" text="消息" />
+      <Button layoutX="337.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#searchMouseAction" prefHeight="35.0" prefWidth="55.0" text="搜索" />
+      <Label layoutX="40.0" layoutY="65.0" prefHeight="35.0" prefWidth="48.0" text="INPUT:" />
       <CheckBox fx:id="baiduCheckBox" layoutX="104.0" layoutY="127.0" mnemonicParsing="false" text="百度" />
       <CheckBox fx:id="youdaoCheckBox" layoutX="219.0" layoutY="127.0" mnemonicParsing="false" text="有道" />
       <CheckBox fx:id="biyingCheckBox" layoutX="322.0" layoutY="127.0" mnemonicParsing="false" text="必应" />
@@ -22,11 +22,11 @@
       <Label fx:id="toolLabel0" layoutX="16.0" layoutY="182.0" prefHeight="15.0" prefWidth="55.0" />
       <Label fx:id="toolLabel1" layoutX="16.0" layoutY="300.0" prefHeight="15.0" prefWidth="55.0" />
       <Label fx:id="toolLabel2" layoutX="16.0" layoutY="421.0" prefHeight="15.0" prefWidth="55.0" />
-      <Button fx:id="shareButton0" layoutX="389.0" layoutY="178.0" mnemonicParsing="false" text="分享" />
-      <Button fx:id="shareButton1" layoutX="389.0" layoutY="296.0" mnemonicParsing="false" text="分享" />
-      <Button fx:id="shareButton2" layoutX="389.0" layoutY="417.0" mnemonicParsing="false" text="分享" />
-      <Button fx:id="favourButton0" layoutX="389.0" layoutY="201.0" mnemonicParsing="false" text="点赞" />
-      <Button fx:id="favourButton1" layoutX="389.0" layoutY="319.0" mnemonicParsing="false" text="点赞" />
-      <Button fx:id="favourButton2" layoutX="389.0" layoutY="440.0" mnemonicParsing="false" text="点赞" />
+      <Button fx:id="shareButton0" layoutX="308.0" layoutY="257.0" mnemonicParsing="false" text="分享" />
+      <Button fx:id="shareButton1" layoutX="308.0" layoutY="377.0" mnemonicParsing="false" text="分享" />
+      <Button fx:id="shareButton2" layoutX="309.0" layoutY="498.0" mnemonicParsing="false" text="分享" />
+      <Button fx:id="favourButton0" layoutX="348.0" layoutY="257.0" mnemonicParsing="false" text="点赞" />
+      <Button fx:id="favourButton1" layoutX="348.0" layoutY="377.0" mnemonicParsing="false" text="点赞" />
+      <Button fx:id="favourButton2" layoutX="349.0" layoutY="498.0" mnemonicParsing="false" text="点赞" />
    </children>
 </Pane>
