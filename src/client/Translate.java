@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Thread.sleep;
+
 /**
  * 定义翻译类
  */
@@ -35,7 +37,13 @@ public class Translate {
             results.put("biying", biyingResult);
         });
 
-        while(results.size() != 3);
+        while(results.size() != 3)
+            try {
+                sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         for(Map.Entry<String, String> entry: results.entrySet()){
             if(entry.getValue().length() == 0)
                 throw new SomeException("没有找到该单词");
@@ -65,8 +73,16 @@ public class Translate {
                 for(int i = 0; i < items.length; i++) {
                     pattern = Pattern.compile("<li><spanclass=\"pos(web){0,1}\">(.*?)</span><spanclass=\"def\"><span>(.*?)</span></span>");
                     matcher = pattern.matcher(items[i]);
-                    if(matcher.find())
-                        result += matcher.group(2) + " " + matcher.group(3) + "\n";
+                    if(matcher.find()) {
+                        result += matcher.group(2);
+                        String strTmp = matcher.group(3);
+                        strTmp = Pattern.compile("&quot;").matcher(strTmp).replaceAll("\\\"");
+                        matcher = Pattern.compile("(.*?)</span><ahref=.*?>(.*?)</a><span>(.*?)</span><span>(.*)").matcher(strTmp);
+                        if(matcher.find())
+                            result += " " + matcher.group(1) + matcher.group(2) + matcher.group(3) + " " + matcher.group(4) + "\n";
+                        else
+                            result += " " + strTmp + "\n";
+                    }
                 }
             }
             return result;

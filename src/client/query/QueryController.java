@@ -207,17 +207,18 @@ public class QueryController implements Initializable{
     @FXML
     public void searchMouseAction(MouseEvent mouseEvent) throws IOException {
         hintLabel.setText("");
-        curWord = inputTextField.getText();
-        if(!isLegal(curWord)){
+        if(!isLegal(inputTextField.getText())){
             hintLabel.setText("请输入英文单词！");
             return;
         }
+        String word = inputTextField.getText();
         try {
-            results = client.Translate.translate(curWord);
+            results = client.Translate.translate(word);
         } catch (SomeException e) {
             hintLabel.setText(e.getMessage());
             return;
         }
+        curWord = word;
 
         //获取点赞数
         List<Integer> favoursTmp = ServerAPI.getFavoursNum(curWord);
