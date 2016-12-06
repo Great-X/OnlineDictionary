@@ -59,7 +59,7 @@ public class QueryController implements Initializable{
     //复选框
     public CheckBox[] checkBoxs = new CheckBox[3];
     @FXML
-    public CheckBox baiduCheckBox;
+    public CheckBox jinshanCheckBox;
     @FXML
     public CheckBox youdaoCheckBox;
     @FXML
@@ -111,17 +111,17 @@ public class QueryController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        results.put("baidu", "");
+        results.put("jinshan", "");
         results.put("youdao", "");
         results.put("biying", "");
-        favours.put("baidu", 0);
+        favours.put("jinshan", 0);
         favours.put("youdao", 0);
         favours.put("biying", 0);
-        userFavour.put("baidu", false);
+        userFavour.put("jinshan", false);
         userFavour.put("youdao", false);
         userFavour.put("biying", false);
 
-        checkBoxs[0] = baiduCheckBox;
+        checkBoxs[0] = jinshanCheckBox;
         checkBoxs[1] = youdaoCheckBox;
         checkBoxs[2] = biyingCheckBox;
         resultTextAreas[0] = resultTextArea0;
@@ -137,7 +137,7 @@ public class QueryController implements Initializable{
         shareButtons[1] = shareButton1;
         shareButtons[2] = shareButton2;
 
-        toolLabel0.setText("百度");
+        toolLabel0.setText("金山");
         toolLabel1.setText("有道");
         toolLabel2.setText("必应");
 
@@ -196,7 +196,11 @@ public class QueryController implements Initializable{
      */
     @FXML
     public void logoutButtonAction(MouseEvent mouseEvent) {
-        ServerAPI.userOffline(Main.userName);
+        try {
+            ServerAPI.userOffline(Main.userName);
+        }catch (SomeException e){
+            e.getMessage();
+        }
         Main.isOnline = false;
         Main.userName = "";
         Main.stageController.setStage("loginView", "queryView");
@@ -225,13 +229,13 @@ public class QueryController implements Initializable{
 
         //获取点赞数
         List<Integer> favoursTmp = ServerAPI.getFavoursNum(curWord);
-        favours.replace("baidu", favoursTmp.get(0));
+        favours.replace("jinshan", favoursTmp.get(0));
         favours.replace("youdao", favoursTmp.get(1));
         favours.replace("biying", favoursTmp.get(2));
 
         //检查该用户之前有没有对该单词点赞
         List<Boolean> userFavourTmp = ServerAPI.getUserFavour(Main.userName, curWord);
-        userFavour.replace("baidu", userFavourTmp.get(0));
+        userFavour.replace("jinshan", userFavourTmp.get(0));
         userFavour.replace("youdao", userFavourTmp.get(1));
         userFavour.replace("biying", userFavourTmp.get(2));
 
@@ -293,8 +297,8 @@ public class QueryController implements Initializable{
         int index = 0;
         for(Map.Entry<String, Integer> entry: favours.entrySet()){
             String tool = entry.getKey();
-            if(tool.equals("baidu")){
-                if(!baiduCheckBox.isSelected())
+            if(tool.equals("jinshan")){
+                if(!jinshanCheckBox.isSelected())
                     continue;
                 showUI(tool, index);
                 index ++;
@@ -320,7 +324,7 @@ public class QueryController implements Initializable{
      */
     private void showUI(String tool, int index){
         Map<String, String> name = new HashMap<>();
-        name.put("baidu", "百度");
+        name.put("jinshan", "金山");
         name.put("youdao", "有道");
         name.put("biying", "必应");
         toolLabels[index].setText(name.get(tool));

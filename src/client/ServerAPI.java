@@ -176,7 +176,6 @@ public class ServerAPI {
         favoursNum.add(0);
         favoursNum.add(0);
         favoursNum.add(0);
-        System.out.println("before");
         HttpResponse response = get(baseUrl + "getRank?token=" + token + "&word=" + word);
         if(response == null)
             return favoursNum;

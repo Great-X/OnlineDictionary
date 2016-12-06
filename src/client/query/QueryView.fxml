@@ -12,10 +12,10 @@
       <Button layoutX="414.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#messageMouseAction" text="消息" />
       <Button layoutX="337.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#searchMouseAction" prefHeight="35.0" prefWidth="55.0" text="搜索" />
       <Label layoutX="40.0" layoutY="65.0" prefHeight="35.0" prefWidth="48.0" text="INPUT:" />
-      <CheckBox fx:id="baiduCheckBox" layoutX="104.0" layoutY="127.0" mnemonicParsing="false" text="百度" />
+      <CheckBox fx:id="jinshanCheckBox" layoutX="104.0" layoutY="127.0" mnemonicParsing="false" text="金山" />
       <CheckBox fx:id="youdaoCheckBox" layoutX="219.0" layoutY="127.0" mnemonicParsing="false" text="有道" />
       <CheckBox fx:id="biyingCheckBox" layoutX="322.0" layoutY="127.0" mnemonicParsing="false" text="必应" />
-      <Label fx:id="hintLabel" layoutX="121.0" layoutY="100.0" />
+      <Label fx:id="hintLabel" layoutX="84.0" layoutY="100.0" />
       <TextArea fx:id="resultTextArea0" editable="false" layoutX="84.0" layoutY="180.0" prefHeight="100.0" prefWidth="305.0" />
       <TextArea fx:id="resultTextArea1" editable="false" layoutX="84.0" layoutY="300.0" prefHeight="100.0" prefWidth="305.0" />
       <TextArea fx:id="resultTextArea2" editable="false" layoutX="84.0" layoutY="421.0" prefHeight="100.0" prefWidth="305.0" />

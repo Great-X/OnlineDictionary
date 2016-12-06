@@ -19,10 +19,10 @@ public class Translate {
     public static HashMap<String, String> translate(String word) throws SomeException{
         HashMap<String, String> results = new HashMap<String, String>();
 
-        //获取百度词典释义
+        //获取金山词典释义
         Main.threadPool.execute(() -> {
-            String baiduResult = baiduTranslate(word);
-            results.put("baidu", baiduResult);
+            String jinshanResult = jinshanTranslate(word);
+            results.put("jinshan", jinshanResult);
         });
 
         //获取有道词典释义
@@ -94,28 +94,30 @@ public class Translate {
 
 
     /**
-     * 百度翻译
+     * 金山翻译
      * @param word
      * @return
      */
-    private static String baiduTranslate(String word) {
-        String urlString = "http://dict.baidu.com/s?wd=" + word + "&ptype=english";
+    private static String jinshanTranslate(String word) {
+        String urlString = "http://www.iciba.com/" + word;
         try {
             String content = getHtml(urlString);
             Pattern pattern = Pattern.compile("[\\s*\t\n\r]");
             Matcher matcher = pattern.matcher(content);
             content = matcher.replaceAll("");
-            pattern = Pattern.compile("<divclass=\"en-content\"><div><p>(.*?)</p></div>");
+            pattern = Pattern.compile("<ulclass=\"base-listswitch_part\"class=\"\">(.*?)</ul>");
             matcher = pattern.matcher(content);
             String[] items = null;
             String result = "";
             if(matcher.find()){
-                items = matcher.group(1).split("</p><p>");
+                items = matcher.group(1).split("</li>");
                 for(int i = 0; i < items.length; i++) {
-                    pattern = Pattern.compile("<strong>(.*?)</strong><span>(.*?)</span>");
+                    pattern = Pattern.compile("<liclass=\"clearfix\"><spanclass=\"prop\">(.*?)</span><p>(.*?)</p>");
                     matcher = pattern.matcher(items[i]);
-                    if(matcher.find())
-                        result += matcher.group(1) + " " + matcher.group(2) + "\n";
+                    if(matcher.find()) {
+                        String strTmp = Pattern.compile("[(<span>)(</span>)]").matcher(matcher.group(2)).replaceAll("");
+                        result += matcher.group(1) + " " + strTmp + "\n";
+                    }
                 }
             }
             return result;
