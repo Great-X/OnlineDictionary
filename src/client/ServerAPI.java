@@ -136,7 +136,7 @@ public class ServerAPI {
      * 从数据库中获取当前用户对当前单词的点赞情况
      * @param userName 用户名
      * @param word 单词
-     * @return 长度为3的ArrayList，依次是百度，有道，必应的点赞情况，点过赞则为true，否则为false
+     * @return 长度为3的ArrayList，依次是金山，有道，必应的点赞情况，点过赞则为true，否则为false
      */
     public static List<Boolean> getUserFavour(String userName, String word) {
         ArrayList<Boolean> userFavour = new ArrayList<>();
@@ -169,7 +169,7 @@ public class ServerAPI {
     /**
      * 从数据库获取某单词的点赞数
      * @param word 该单词
-     * @return 长度为3的ArrayList,依次是百度，有道，必应的点赞数
+     * @return 长度为3的ArrayList,依次是金山，有道，必应的点赞数
      */
     public static ArrayList<Integer> getFavoursNum(String word) {
         ArrayList<Integer> favoursNum = new ArrayList<>(3);
