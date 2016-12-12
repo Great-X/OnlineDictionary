@@ -96,9 +96,35 @@ public class QueryController implements Initializable{
     @FXML
     public Label toolLabel2;
 
+    //功能按钮
+    @FXML
+    public Button loginButton;
+    @FXML
+    public Button logoutButton;
+    @FXML
+    public Button userButton;
+    @FXML
+    public Button msgButton;
+
+
+    /**
+     * 初始化静态变量
+     */
+    static {
+        results.put("jinshan", "");
+        results.put("youdao", "");
+        results.put("biying", "");
+        favours.put("jinshan", 0);
+        favours.put("youdao", 0);
+        favours.put("biying", 0);
+        userFavour.put("jinshan", false);
+        userFavour.put("youdao", false);
+        userFavour.put("biying", false);
+    }
+
     /**
      * 返回当前单词
-     * @return
+     * @return string
      */
     public static String getCurWord(){
         return curWord;
@@ -111,15 +137,6 @@ public class QueryController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        results.put("jinshan", "");
-        results.put("youdao", "");
-        results.put("biying", "");
-        favours.put("jinshan", 0);
-        favours.put("youdao", 0);
-        favours.put("biying", 0);
-        userFavour.put("jinshan", false);
-        userFavour.put("youdao", false);
-        userFavour.put("biying", false);
 
         checkBoxs[0] = jinshanCheckBox;
         checkBoxs[1] = youdaoCheckBox;
@@ -172,11 +189,27 @@ public class QueryController implements Initializable{
                 }
                 Main.stageController.setStage("userView", "queryView");
             });
-
             //设置点赞按钮的监听器
             favourButtons[i].setOnAction(event -> {});
         }
 
+        //设置文本显示
+        inputTextField.setText(curWord);
+        showResult();
+
+        //根据用户是否离线来隐藏一些控件
+        if(!Main.isOnline){
+            userButton.setVisible(false);
+            msgButton.setVisible(false);
+            logoutButton.setVisible(false);
+            loginButton.setVisible(true);
+        }
+        else{
+            userButton.setVisible(true);
+            msgButton.setVisible(true);
+            logoutButton.setVisible(true);
+            loginButton.setVisible(false);
+        }
     }
 
 
@@ -329,8 +362,19 @@ public class QueryController implements Initializable{
         name.put("biying", "必应");
         toolLabels[index].setText(name.get(tool));
         resultTextAreas[index].setVisible(true);
-        favourButtons[index].setVisible(true);
-        shareButtons[index].setVisible(true);
+        if(Main.isOnline) {
+            favourButtons[index].setVisible(true);
+            shareButtons[index].setVisible(true);
+        }
         resultTextAreas[index].setText(results.get(tool));
+    }
+
+
+    /**
+     * 登录按钮点击事件
+     * @param mouseEvent
+     */
+    public void loginButtonAction(MouseEvent mouseEvent) {
+        Main.stageController.setStage("loginView", "queryView");
     }
 }
