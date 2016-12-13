@@ -255,7 +255,9 @@ public class ServerAPI {
      * @param tool 工具，指的是金山、有道、必应之一
      * @param userName 用户名
      */
-    public static void favourAction(String word, String tool, String userName){}
+    public static void favourAction(String word, String tool, String userName) throws SomeException{
+        //可能抛出异常“之前点过赞”
+    }
 
 
     private static HttpResponse post(String url, List<NameValuePair> params){

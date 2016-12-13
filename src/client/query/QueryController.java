@@ -169,8 +169,23 @@ public class QueryController implements Initializable{
                 UserController.isSharing = true;
                 Main.stageController.setStage("userView", "queryView");
             });
+
             //设置点赞按钮的监听器
-            favourButtons[i].setOnAction(event -> {});
+            favourButtons[i].setOnAction(event -> {
+                if(curWord.length() == 0){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("搞不清楚你要赞什么!");
+                    alert.showAndWait();
+                    return;
+                }
+                try {
+                    ServerAPI.favourAction(curWord, results.getResult(finalI).getTool(), Main.userName);
+                } catch (SomeException e) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("赞过啦！");
+                    alert.showAndWait();
+                }
+            });
         }
 
         //设置文本显示
