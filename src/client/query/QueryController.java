@@ -35,13 +35,7 @@ public class QueryController implements Initializable{
     private static String curWord = "";
 
     //搜索结果
-    private static HashMap<String, String> results = new LinkedHashMap<>();
-
-    //点赞数
-    private static HashMap<String, Integer> favours = new LinkedHashMap<>();
-
-    //该用户对当前单词的点赞情况
-    private static HashMap<String, Boolean> userFavour = new LinkedHashMap<>();
+    private static QueryResults results = new QueryResults();
 
     // 单词输入域
     @FXML
@@ -106,21 +100,6 @@ public class QueryController implements Initializable{
     @FXML
     public Button msgButton;
 
-
-    /**
-     * 初始化静态变量
-     */
-    static {
-        results.put("jinshan", "");
-        results.put("youdao", "");
-        results.put("biying", "");
-        favours.put("jinshan", 0);
-        favours.put("youdao", 0);
-        favours.put("biying", 0);
-        userFavour.put("jinshan", false);
-        userFavour.put("youdao", false);
-        userFavour.put("biying", false);
-    }
 
     /**
      * 返回当前单词
@@ -255,7 +234,7 @@ public class QueryController implements Initializable{
         }
         String word = inputTextField.getText();
         try {
-            results = client.Translate.translate(word);
+            results.setResultsContent(client.Translate.translate(word));
         } catch (SomeException e) {
             hintLabel.setText(e.getMessage());
             return;
@@ -263,31 +242,15 @@ public class QueryController implements Initializable{
         curWord = word;
 
         //获取点赞数
-        List<Integer> favoursTmp = ServerAPI.getFavoursNum(curWord);
-        favours.replace("jinshan", favoursTmp.get(0));
-        favours.replace("youdao", favoursTmp.get(1));
-        favours.replace("biying", favoursTmp.get(2));
+        results.setResultsFavourNum(ServerAPI.getFavoursNum(curWord));
 
         //检查该用户之前有没有对该单词点赞
-        List<Boolean> userFavourTmp = ServerAPI.getUserFavour(Main.userName, curWord);
-        userFavour.replace("jinshan", userFavourTmp.get(0));
-        userFavour.replace("youdao", userFavourTmp.get(1));
-        userFavour.replace("biying", userFavourTmp.get(2));
+        if(Main.isOnline) {
+            results.setResultsUserFavour(ServerAPI.getUserFavour(Main.userName, curWord));
+        }
 
         //根据点赞数排序
-        ArrayList<Map.Entry<String, Integer>> list = new ArrayList<>(favours.entrySet());
-        Collections.sort(list, (o1, o2) -> {
-            if(userFavour.get(o1.getKey()) && !userFavour.get(o2.getKey()))
-                return -1;
-            else if(!userFavour.get(o1.getKey()) && userFavour.get(o2.getKey()))
-                return 1;
-            else
-                return o2.getValue() - o1.getValue();
-        });
-        favours.clear();
-        for(Map.Entry<String, Integer> entry: list){
-            favours.put(entry.getKey(), entry.getValue());
-        }
+        results.sort();
 
         showResult();
     }
@@ -330,8 +293,8 @@ public class QueryController implements Initializable{
             shareButton.setVisible(false);
 
         int index = 0;
-        for(Map.Entry<String, Integer> entry: favours.entrySet()){
-            String tool = entry.getKey();
+        for(int i = 0; i < 3; i++){
+            String tool = results.getResult(i).getTool();
             if(tool.equals("jinshan")){
                 if(!jinshanCheckBox.isSelected())
                     continue;
@@ -368,7 +331,7 @@ public class QueryController implements Initializable{
             favourButtons[index].setVisible(true);
             shareButtons[index].setVisible(true);
         }
-        resultTextAreas[index].setText(results.get(tool));
+        resultTextAreas[index].setText(results.getResult(tool).getContent());
     }
 
 

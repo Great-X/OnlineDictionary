@@ -248,6 +248,16 @@ public class ServerAPI {
      */
     public static void shareWordCard(String word, File file, String sender, String[] receiver){}
 
+
+    /**
+     * TODO:点赞行为，将点赞记录写入数据库
+     * @param word 单词
+     * @param tool 工具，指的是金山、有道、必应之一
+     * @param userName 用户名
+     */
+    public static void favourAction(String word, String tool, String userName){}
+
+
     private static HttpResponse post(String url, List<NameValuePair> params){
 
         HttpClient httpclient = new DefaultHttpClient();
