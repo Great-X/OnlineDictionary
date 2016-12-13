@@ -21,6 +21,10 @@ import java.util.function.BooleanSupplier;
 
 
 public class UserController implements Initializable{
+    //表示当前是否在发送单词卡的过程
+    public static boolean isSharing = false;
+
+    //发送的用户集合
     public static ArrayList<String> sendToUsers = new ArrayList<>();
 
     // 定义存放所有用户的数组
@@ -60,6 +64,13 @@ public class UserController implements Initializable{
                 return new UserListCell();
             }
         });
+
+        if(!isSharing){
+            ensureButton.setVisible(false);
+        }
+        else{
+            ensureButton.setVisible(true);
+        }
     }
 
 

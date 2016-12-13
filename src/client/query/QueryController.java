@@ -187,6 +187,7 @@ public class QueryController implements Initializable{
                     e.printStackTrace();
                     return;
                 }
+                UserController.isSharing = true;
                 Main.stageController.setStage("userView", "queryView");
             });
             //设置点赞按钮的监听器
@@ -219,6 +220,7 @@ public class QueryController implements Initializable{
      */
     @FXML
     public void userButtonAction(MouseEvent mouseEvent) {
+        UserController.isSharing = false;
         Main.stageController.setStage("userView", "queryView");
     }
 

@@ -12,11 +12,15 @@ import javafx.scene.paint.Color;
 public class UserListCell extends ListCell<UserObject> {
     HBox hbox = new HBox();
     CheckBox userNameBox = new CheckBox();
+    Label userNameLabel = new Label();
     String lastItem;
 
     public UserListCell(){
         super();
-        hbox.getChildren().addAll(userNameBox);
+        if(UserController.isSharing)
+            hbox.getChildren().addAll(userNameBox);
+        else
+            hbox.getChildren().addAll(userNameLabel);
     }
 
 
@@ -40,7 +44,9 @@ public class UserListCell extends ListCell<UserObject> {
             }
             else {
                 userNameBox.setText(item.getName());
+                userNameLabel.setText(item.getName());
                 userNameBox.setTextFill(item.getStatus()== true? Color.BLUE:Color.GRAY);
+                userNameLabel.setTextFill(item.getStatus()== true? Color.BLUE:Color.GRAY);
                 userNameBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
                     if(newValue)
                         UserController.sendToUsers.add(item.getName());
