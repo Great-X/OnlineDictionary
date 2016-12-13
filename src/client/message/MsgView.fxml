@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="298.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.message.MsgController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.message.MsgController">
    <children>
-      <ListView layoutX="25.0" layoutY="52.0" prefHeight="278.0" prefWidth="249.0" />
-      <Button layoutX="234.0" layoutY="345.0" mnemonicParsing="false" onAction="#backAction" text="返回" />
+      <Button layoutX="419.0" layoutY="236.0" mnemonicParsing="false" onAction="#backAction" text="返回" />
       <Label layoutX="25.0" layoutY="23.0" text="我收到的单词卡" />
+      <JFXListView fx:id="msgList" layoutX="25.0" layoutY="47.0" prefHeight="185.0" prefWidth="434.0" />
    </children>
 </Pane>

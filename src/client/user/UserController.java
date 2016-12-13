@@ -90,7 +90,7 @@ public class UserController implements Initializable{
     public void ensureMouseAction(MouseEvent mouseEvent) {
         Main.threadPool.execute(() -> {
             String word = QueryController.getCurWord();
-            ServerAPI.shareWordCard(word, new File(word + ".png"), Main.userName, (String[]) sendToUsers.toArray(new String[0]));
+            ServerAPI.shareWordCard(new WordCard(word, new File(word + ".png"), Main.userName, sendToUsers));
         });
         Main.stageController.setStage("queryView", "userView");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

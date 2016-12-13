@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import client.user.WordCard;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -238,17 +240,6 @@ public class ServerAPI {
         return allUsers;
     }
 
-
-    /**
-     * TODO:分享单词卡
-     * @param word 所发送的单词
-     * @param file 被发送的单词卡图片
-     * @param sender 发送方
-     * @param receiver 接收方数组
-     */
-    public static void shareWordCard(String word, File file, String sender, String[] receiver){}
-
-
     /**
      * TODO:点赞行为，将点赞记录写入数据库
      * @param word 单词
@@ -258,6 +249,30 @@ public class ServerAPI {
     public static void favourAction(String word, String tool, String userName) throws SomeException{
         //可能抛出异常“之前点过赞”
     }
+
+    /**
+     * TODO:分享单词卡
+     * word 所发送的单词
+     * file 被发送的单词卡图片
+     * sender 发送方
+     * receiver 接收方
+     */
+    public static void shareWordCard(WordCard wordCard) {
+        String word = wordCard.getWord();
+        File file = wordCard.getFile();
+        String sender = wordCard.getSender();
+        ArrayList<String> receiver = wordCard.getReceiver();
+    }
+
+    /**
+     * TODO:接收单词卡
+     * @return 返回单词卡列表
+     */
+    public static ArrayList<WordCard> receiveWordCard(){
+        return null;
+    }
+
+
 
 
     private static HttpResponse post(String url, List<NameValuePair> params){
@@ -286,4 +301,5 @@ public class ServerAPI {
         }
 
     }
+
 }
