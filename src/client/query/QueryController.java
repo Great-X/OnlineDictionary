@@ -156,6 +156,7 @@ public class QueryController implements Initializable{
                 if(curWord.length() == 0){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("单词卡不能为空!");
+                    alert.setContentText("当前单词为空");
                     alert.showAndWait();
                     return;
                 }
@@ -175,6 +176,7 @@ public class QueryController implements Initializable{
                 if(curWord.length() == 0){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("搞不清楚你要赞什么!");
+                    alert.setContentText("当前单词为空");
                     alert.showAndWait();
                     return;
                 }
@@ -183,6 +185,7 @@ public class QueryController implements Initializable{
                 } catch (SomeException e) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("赞过啦！");
+                    alert.setContentText("不允许重复点赞");
                     alert.showAndWait();
                 }
             });
