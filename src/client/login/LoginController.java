@@ -2,8 +2,10 @@ package client.login;
 
 import client.Main;
 import client.ServerAPI;
+import client.SomeException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -45,14 +47,21 @@ public class LoginController implements Initializable{
         hintLabel.setText("");
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if(ServerAPI.checkPassword(username, password)) {
-            Main.isOnline = true;
-            Main.userName = username;
-            ServerAPI.userOnline(username);
-            Main.stageController.setStage("queryView", "loginView");
-        }
-        else{
-            hintLabel.setText("用户名/密码输入错误！");
+        try {
+            if (ServerAPI.checkPassword(username, password)) {
+                Main.isOnline = true;
+                Main.userName = username;
+                ServerAPI.userOnline(username);
+                Main.stageController.setStage("queryView", "loginView");
+            } else {
+                hintLabel.setText("用户名/密码输入错误！");
+            }
+        }catch (SomeException e) {
+            //e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("error");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 

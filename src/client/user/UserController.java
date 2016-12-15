@@ -2,6 +2,7 @@ package client.user;
 
 import client.Main;
 import client.ServerAPI;
+import client.SomeException;
 import client.query.QueryController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -90,7 +91,15 @@ public class UserController implements Initializable{
     public void ensureMouseAction(MouseEvent mouseEvent) {
         Main.threadPool.execute(() -> {
             String word = QueryController.getCurWord();
-            ServerAPI.shareWordCard(new WordCard(word, new File(word + ".png"), Main.userName, sendToUsers));
+            try {
+                ServerAPI.shareWordCard(new WordCard(word, new File(word + ".png"), Main.userName, sendToUsers));
+            }catch (SomeException e) {
+                //e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         });
         Main.stageController.setStage("queryView", "userView");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

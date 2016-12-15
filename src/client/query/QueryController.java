@@ -183,9 +183,10 @@ public class QueryController implements Initializable{
                 try {
                     ServerAPI.favourAction(curWord, results.getResult(finalI).getTool(), Main.userName);
                 } catch (SomeException e) {
+                    //e.printStackTrace();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText("赞过啦！");
-                    alert.setContentText("不允许重复点赞");
+                    alert.setHeaderText("error");
+                    alert.setContentText(e.getMessage());
                     alert.showAndWait();
                 }
             });
@@ -260,11 +261,19 @@ public class QueryController implements Initializable{
         curWord = word;
 
         //获取点赞数
-        results.setResultsFavourNum(ServerAPI.getFavoursNum(curWord));
+        try {
+            results.setResultsFavourNum(ServerAPI.getFavoursNum(curWord));
 
         //检查该用户之前有没有对该单词点赞
-        if(Main.isOnline) {
-            results.setResultsUserFavour(ServerAPI.getUserFavour(Main.userName, curWord));
+            if(Main.isOnline) {
+                results.setResultsUserFavour(ServerAPI.getUserFavour(Main.userName, curWord));
+            }
+        } catch (SomeException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("error");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
 
         //根据点赞数排序

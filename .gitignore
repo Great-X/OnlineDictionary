@@ -4,5 +4,6 @@
 
 # IntelliJ project files
 *.png
+*.jpg
 out
 gen
