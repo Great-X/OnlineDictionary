@@ -1,0 +1,11 @@
+.button{
+    -fx-background-color: black;
+}
+.label{
+    -fx-font-size: 20px;
+}
+
+.check-box{
+    -fx-font-size: 20px;
+}
+

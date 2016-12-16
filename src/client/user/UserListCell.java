@@ -1,5 +1,6 @@
 package client.user;
 
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -11,7 +12,7 @@ import javafx.scene.paint.Color;
  */
 public class UserListCell extends ListCell<UserObject> {
     HBox hbox = new HBox();
-    CheckBox userNameBox = new CheckBox();
+    JFXCheckBox userNameBox = new JFXCheckBox();
     Label userNameLabel = new Label();
     String lastItem;
 
