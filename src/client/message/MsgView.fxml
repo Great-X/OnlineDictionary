@@ -9,11 +9,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@MsgStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.message.MsgController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bccfe1" height="350.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="300.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c0d3e4" height="350.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="300.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
       <Label layoutX="8.0" layoutY="8.0" text="我收到的单词卡" textFill="WHITE">
          <font>
-            <Font name="Microsoft YaHei" size="24.0" />
+            <Font name="Microsoft JhengHei UI" size="24.0" />
          </font></Label>
       <JFXListView fx:id="msgList" layoutX="25.0" layoutY="82.0" prefHeight="286.0" prefWidth="238.0" />
       <JFXButton layoutX="243.0" layoutY="14.0" onAction="#backAction" text="返回" textFill="WHITE" />

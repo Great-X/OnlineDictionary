@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69c77007-d1ee-4487-9399-53e368fa0657" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/image/word_card/hello.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/client/message/MsgStyle.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/message/MsgController.java" afterPath="$PROJECT_DIR$/src/client/message/MsgController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/message/MsgListCell.java" afterPath="$PROJECT_DIR$/src/client/message/MsgListCell.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/message/MsgView.fxml" afterPath="$PROJECT_DIR$/src/client/message/MsgView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/query/QueryController.java" afterPath="$PROJECT_DIR$/src/client/query/QueryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/user/UserController.java" afterPath="$PROJECT_DIR$/src/client/user/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/query/QueryView.fxml" afterPath="$PROJECT_DIR$/src/client/query/QueryView.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/register/RegisterView.fxml" afterPath="$PROJECT_DIR$/src/client/register/RegisterView.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/user/UserView.fxml" afterPath="$PROJECT_DIR$/src/client/user/UserView.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -29,44 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/client/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MsgController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/message/MsgController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="51" column="11" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
-              <folding>
-                <element signature="e#1691#1692#0" expanded="true" />
-                <element signature="e#1760#1761#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MsgStyle.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/message/MsgStyle.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MsgListCell.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/client/message/MsgListCell.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+            <state relative-caret-position="198">
+              <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -169,6 +133,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="OnlineDictionary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDictionary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDictionary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDictionary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDictionary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -677,7 +673,7 @@
       <workItem from="1481788723753" duration="4781000" />
       <workItem from="1481800146328" duration="716000" />
       <workItem from="1481809068971" duration="50000" />
-      <workItem from="1481855297584" duration="30034000" />
+      <workItem from="1481855297584" duration="31131000" />
     </task>
     <task id="LOCAL-00001" summary="美化查询界面">
       <created>1481876699142</created>
@@ -707,11 +703,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481887890908</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="美化消息界面">
+      <created>1481891158077</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1481891158077</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40176000" />
+    <option name="totallyTimeSpent" value="41273000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -767,7 +770,8 @@
     <MESSAGE value="美化登录界面" />
     <MESSAGE value="美化注册界面" />
     <MESSAGE value="美化好友界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="美化好友界面" />
+    <MESSAGE value="美化消息界面" />
+    <option name="LAST_COMMIT_MESSAGE" value="美化消息界面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -993,30 +997,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/value/ChangeListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/message/MsgController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="51" column="11" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
-          <folding>
-            <element signature="e#1691#1692#0" expanded="true" />
-            <element signature="e#1760#1761#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1069,8 +1054,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/message/MsgListCell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state relative-caret-position="220">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/message/MsgController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="51" column="11" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
+          <folding>
+            <element signature="e#1691#1692#0" expanded="true" />
+            <element signature="e#1760#1761#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding />
         </state>
       </provider>

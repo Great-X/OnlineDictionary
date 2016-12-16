@@ -17,31 +17,31 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c2c2c2" height="550.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="84.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="400.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="42.0" layoutX="431.0" layoutY="72.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c0d3e4" height="550.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="96.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="400.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="42.0" layoutX="444.0" layoutY="72.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="138.0" layoutY="149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="305.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="400.0" layoutX="82.0" layoutY="182.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="428.0" />
-      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="12.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="查词">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cde3fb" height="400.0" layoutX="82.0" layoutY="182.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="428.0" />
+      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="查词">
          <font>
-            <Font name="Microsoft YaHei UI" size="30.0" />
+            <Font name="Microsoft JhengHei UI" size="24.0" />
          </font>
       </Text>
       <ImageView fx:id="userImage" fitHeight="40.0" fitWidth="40.0" layoutX="533.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-      <JFXTextField fx:id="inputTextField" focusColor="BLACK" layoutX="159.0" layoutY="76.0" maxWidth="305.0" minWidth="254.0" prefHeight="29.0" prefWidth="266.0" unFocusColor="#aea7a7">
+      <JFXTextField fx:id="inputTextField" focusColor="BLACK" layoutX="171.0" layoutY="76.0" maxWidth="305.0" minWidth="254.0" prefHeight="29.0" prefWidth="266.0" unFocusColor="#aea7a7">
          <font>
             <Font name="Berlin Sans FB" size="16.0" />
          </font></JFXTextField>
-      <ImageView fx:id="searchImage" fitHeight="25.0" fitWidth="25.0" layoutX="442.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="searchImage" fitHeight="25.0" fitWidth="25.0" layoutX="460.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/ui/search.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="searchButton" layoutX="431.0" layoutY="72.0" onMouseClicked="#searchMouseAction" prefHeight="42.0" prefWidth="48.0">
+      <JFXButton fx:id="searchButton" layoutX="444.0" layoutY="72.0" onMouseClicked="#searchMouseAction" prefHeight="42.0" prefWidth="48.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>
-      <Label layoutX="95.0" layoutY="76.0" prefHeight="35.0" prefWidth="76.0" text="INPUT:">
+      <Label layoutX="107.0" layoutY="76.0" prefHeight="35.0" prefWidth="76.0" text="INPUT:">
          <font>
             <Font name="Bodoni MT Black Italic" size="18.0" />
          </font></Label>
