@@ -130,13 +130,12 @@ public class QueryController implements Initializable{
     @FXML
     public Button msgButton;
 
-    private final String baseImagePath = Main.basePath + "\\src\\image\\";
-    private final String jinshanImagePath = baseImagePath + "ui\\jinshan.png";
-    private final String youdaoImagePath = baseImagePath + "ui\\youdao.jpg";
-    private final String biyingImagePath = baseImagePath + "ui\\biying.jpg";
-    private final String touristImagePath = baseImagePath + "ui\\tourist.png";
-    private final String favourImagePath = baseImagePath + "ui\\favour.png";
-    private final String unfavourImagePath = baseImagePath + "ui\\unfavour.png";
+    private final String jinshanImagePath = Main.baseImagePath + "ui\\jinshan.png";
+    private final String youdaoImagePath = Main.baseImagePath + "ui\\youdao.jpg";
+    private final String biyingImagePath = Main.baseImagePath + "ui\\biying.jpg";
+    private final String touristImagePath = Main.baseImagePath + "ui\\tourist.png";
+    private final String favourImagePath = Main.baseImagePath + "ui\\favour.png";
+    private final String unfavourImagePath = Main.baseImagePath + "ui\\unfavour.png";
 
     /**
      * 返回当前单词
@@ -248,7 +247,7 @@ public class QueryController implements Initializable{
         }
         else{
             createUserImage();
-            userImage.setImage(new Image(baseImagePath + "user\\" + Main.userName + ".png"));
+            userImage.setImage(new Image(Main.baseImagePath + "user\\" + Main.userName + ".png"));
             userLabel.setText("欢迎您，尊敬的" + Main.userName);
         }
     }

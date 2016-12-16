@@ -25,10 +25,6 @@ public class LoginController implements Initializable{
     @FXML
     public PasswordField passwordField;
 
-    // 提示区域
-    @FXML
-    public Label hintLabel;
-
     /**
      * stage初始化
      * @param location
@@ -44,7 +40,6 @@ public class LoginController implements Initializable{
      */
     @FXML
     public void loginButtonAction(MouseEvent event){
-        hintLabel.setText("");
         String username = usernameField.getText();
         String password = passwordField.getText();
         try {
@@ -54,7 +49,10 @@ public class LoginController implements Initializable{
                 ServerAPI.userOnline(username);
                 Main.stageController.setStage("queryView", "loginView");
             } else {
-                hintLabel.setText("用户名/密码输入错误！");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("error");
+                alert.setContentText("用户名/密码输入错误！");
+                alert.showAndWait();
             }
         }catch (SomeException e) {
             //e.printStackTrace();

@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 public class Main extends Application {
     //工程路径
     public static String basePath = "file:\\" + System.getProperty("user.dir");
+    public static String baseImagePath = Main.basePath + "\\src\\image\\";
 
     // 定义一个stage管理器
     public static StageController stageController = new StageController();
