@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
@@ -29,14 +31,23 @@ public class RegisterController implements Initializable{
     //用户名输入提示
     @FXML
     public Label userNameHintLabel;
+    @FXML
+    public ImageView userNameHintImage;
 
     //密码输入提示
     @FXML
     public Label passwordHintLabel;
+    @FXML
+    public ImageView passwordHintImage;
 
     //重复输入密码提示
     @FXML
-    private Label repeatPasswordHintLabel;
+    public Label repeatPasswordHintLabel;
+    @FXML
+    public ImageView repeatPasswordHintImage;
+
+    private final String correctImagePath = Main.baseImagePath + "ui\\correct.png";
+    private final String errorImagePath = Main.baseImagePath + "ui\\error.png";
 
     /**
      * stage初始化
@@ -57,21 +68,27 @@ public class RegisterController implements Initializable{
         userNameHintLabel.setText("");
         passwordHintLabel.setText("");
         repeatPasswordHintLabel.setText("");
+        userNameHintImage.setImage(null);
+        passwordHintImage.setImage(null);
+        repeatPasswordHintImage.setImage(null);
 
         // 判断空值
         String username = userNameField.getText();
         if (username.length() == 0){
             userNameHintLabel.setText("用户名不能为空！");
+            userNameHintImage.setImage(new Image(errorImagePath));
             return;
         }
         String password = passwordField.getText();
         if(password.length() == 0){
             passwordHintLabel.setText("密码不能为空！");
+            passwordHintImage.setImage(new Image(errorImagePath));
             return;
         }
         String repeatPassword = repeatPasswordField.getText();
         if(repeatPassword.length() == 0){
             repeatPasswordHintLabel.setText("请再次确认密码！");
+            repeatPasswordHintImage.setImage(new Image(errorImagePath));
             return;
         }
 
@@ -79,6 +96,7 @@ public class RegisterController implements Initializable{
         try {
             if(ServerAPI.userNameExist(username)){
                 userNameHintLabel.setText("该用户名已存在！");
+                userNameHintImage.setImage(new Image(errorImagePath));
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -87,8 +105,13 @@ public class RegisterController implements Initializable{
         // 判断两次输入的密码是否相同
         if(!password.equals(repeatPassword)){
             repeatPasswordHintLabel.setText("密码确认错误！");
+            repeatPasswordHintImage.setImage(new Image(errorImagePath));
             return;
         }
+
+        userNameHintImage.setImage(new Image(correctImagePath));
+        passwordHintImage.setImage(new Image(correctImagePath));
+        repeatPasswordHintImage.setImage(new Image(correctImagePath));
 
         //保存用户到数据库
         try {
