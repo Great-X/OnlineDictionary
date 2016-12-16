@@ -7,17 +7,17 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class MsgListCell extends JFXListCell<WordCard>{
     VBox vBox = new VBox();
     Label wordLabel = new Label();
     Label senderLabel = new Label();
-    ImageView imageView = new ImageView();
     String lastItem;
 
     public MsgListCell(){
         super();
-        vBox.getChildren().addAll(wordLabel, senderLabel, imageView);
+        vBox.getChildren().addAll(wordLabel, senderLabel);
     }
 
     @Override
@@ -34,12 +34,12 @@ public class MsgListCell extends JFXListCell<WordCard>{
             if(item == null){
                 wordLabel.setText("<null>");
                 senderLabel.setText("<null>");
-                imageView.setVisible(false);
             }
             else {
+                wordLabel.setFont(Font.font(30));
                 wordLabel.setText(item.getWord());
+                senderLabel.setFont(Font.font(15));
                 senderLabel.setText(item.getSender());
-                //imageView.setImage(new Image("hello.png"));
             }
             setGraphic(vBox);
         }

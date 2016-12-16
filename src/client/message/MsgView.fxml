@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.message.MsgController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@MsgStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.message.MsgController">
    <children>
-      <Button layoutX="419.0" layoutY="236.0" mnemonicParsing="false" onAction="#backAction" text="返回" />
-      <Label layoutX="25.0" layoutY="23.0" text="我收到的单词卡" />
-      <JFXListView fx:id="msgList" layoutX="25.0" layoutY="47.0" prefHeight="185.0" prefWidth="434.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bccfe1" height="350.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="300.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+      <Label layoutX="8.0" layoutY="8.0" text="我收到的单词卡" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="24.0" />
+         </font></Label>
+      <JFXListView fx:id="msgList" layoutX="25.0" layoutY="82.0" prefHeight="286.0" prefWidth="238.0" />
+      <JFXButton layoutX="243.0" layoutY="14.0" onAction="#backAction" text="返回" textFill="WHITE" />
    </children>
 </Pane>

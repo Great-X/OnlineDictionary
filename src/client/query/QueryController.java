@@ -202,7 +202,7 @@ public class QueryController implements Initializable{
                 }
                 WritableImage image = resultTextAreas[finalI].snapshot(new SnapshotParameters(), null);
                 try {
-                    ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", new File(curWord + ".png"));
+                    ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", new File("src\\image\\word_card\\" + curWord + ".png"));
                 } catch (IOException e) {
                     e.printStackTrace();
                     return;

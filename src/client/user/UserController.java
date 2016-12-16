@@ -92,7 +92,7 @@ public class UserController implements Initializable{
         Main.threadPool.execute(() -> {
             String word = QueryController.getCurWord();
             try {
-                ServerAPI.shareWordCard(new WordCard(word, new File(word + ".png"), Main.userName, sendToUsers));
+                ServerAPI.shareWordCard(new WordCard(word, new File("src\\image\\word_card\\" + word + ".png"), Main.userName, sendToUsers));
             }catch (SomeException e) {
                 //e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
