@@ -3,7 +3,5 @@
 ### Example user template
 
 # IntelliJ project files
-*.png
-*.jpg
 out
 gen

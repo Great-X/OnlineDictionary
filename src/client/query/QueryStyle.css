@@ -1,0 +1,13 @@
+.text-area{
+    -fx-background-color: black;
+}
+
+.scroll-bar{
+    -fx-background-color: black;
+}
+
+#userButton, #msgButton, #logoutButton{
+    -fx-border-width: 2px;
+    -fx-background-color: black;
+    -fx-border-color: white;
+}

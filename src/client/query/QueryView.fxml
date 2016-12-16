@@ -1,32 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.query.QueryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@QueryStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.query.QueryController">
    <children>
-      <TextField fx:id="inputTextField" layoutX="84.0" layoutY="65.0" prefHeight="35.0" prefWidth="305.0" />
-      <Button fx:id="logoutButton" layoutX="414.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#logoutButtonAction" text="注销" />
-      <Button fx:id="userButton" layoutX="414.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#userButtonAction" text="好友" />
-      <Button fx:id="msgButton" layoutX="414.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#messageMouseAction" text="消息" />
-      <Button layoutX="337.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#searchMouseAction" prefHeight="35.0" prefWidth="55.0" text="搜索" />
-      <Label layoutX="40.0" layoutY="65.0" prefHeight="35.0" prefWidth="48.0" text="INPUT:" />
-      <CheckBox fx:id="jinshanCheckBox" layoutX="104.0" layoutY="127.0" mnemonicParsing="false" text="金山" />
-      <CheckBox fx:id="youdaoCheckBox" layoutX="219.0" layoutY="127.0" mnemonicParsing="false" text="有道" />
-      <CheckBox fx:id="biyingCheckBox" layoutX="322.0" layoutY="127.0" mnemonicParsing="false" text="必应" />
-      <Label fx:id="hintLabel" layoutX="84.0" layoutY="100.0" />
-      <TextArea fx:id="resultTextArea0" editable="false" layoutX="84.0" layoutY="180.0" prefHeight="100.0" prefWidth="305.0" />
-      <TextArea fx:id="resultTextArea1" editable="false" layoutX="84.0" layoutY="300.0" prefHeight="100.0" prefWidth="305.0" />
-      <TextArea fx:id="resultTextArea2" editable="false" layoutX="84.0" layoutY="421.0" prefHeight="100.0" prefWidth="305.0" />
-      <Label fx:id="toolLabel0" layoutX="16.0" layoutY="182.0" prefHeight="15.0" prefWidth="55.0" />
-      <Label fx:id="toolLabel1" layoutX="16.0" layoutY="300.0" prefHeight="15.0" prefWidth="55.0" />
-      <Label fx:id="toolLabel2" layoutX="16.0" layoutY="421.0" prefHeight="15.0" prefWidth="55.0" />
-      <Button fx:id="shareButton0" layoutX="308.0" layoutY="257.0" mnemonicParsing="false" text="分享" />
-      <Button fx:id="shareButton1" layoutX="308.0" layoutY="377.0" mnemonicParsing="false" text="分享" />
-      <Button fx:id="shareButton2" layoutX="309.0" layoutY="498.0" mnemonicParsing="false" text="分享" />
-      <Button fx:id="favourButton0" layoutX="348.0" layoutY="257.0" mnemonicParsing="false" text="点赞" />
-      <Button fx:id="favourButton1" layoutX="348.0" layoutY="377.0" mnemonicParsing="false" text="点赞" />
-      <Button fx:id="favourButton2" layoutX="349.0" layoutY="498.0" mnemonicParsing="false" text="点赞" />
-      <Button fx:id="loginButton" layoutX="414.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#loginButtonAction" text="登录" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" stroke="BLACK" strokeType="INSIDE" width="600.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c2c2c2" height="550.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="84.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="400.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="42.0" layoutX="431.0" layoutY="72.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="138.0" layoutY="149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="305.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="400.0" layoutX="82.0" layoutY="182.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="428.0" />
+      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="12.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="查词">
+         <font>
+            <Font name="Microsoft YaHei UI" size="30.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="userImage" fitHeight="40.0" fitWidth="40.0" layoutX="533.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXTextField fx:id="inputTextField" focusColor="BLACK" layoutX="159.0" layoutY="76.0" maxWidth="305.0" minWidth="254.0" prefHeight="29.0" prefWidth="266.0" unFocusColor="#aea7a7">
+         <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+         </font></JFXTextField>
+      <ImageView fx:id="searchImage" fitHeight="25.0" fitWidth="25.0" layoutX="442.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/ui/search.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="searchButton" layoutX="431.0" layoutY="72.0" onMouseClicked="#searchMouseAction" prefHeight="42.0" prefWidth="48.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <Label layoutX="95.0" layoutY="76.0" prefHeight="35.0" prefWidth="76.0" text="INPUT:">
+         <font>
+            <Font name="Bodoni MT Black Italic" size="18.0" />
+         </font></Label>
+      <Label fx:id="hintLabel" layoutX="135.0" layoutY="118.0" prefHeight="30.0" prefWidth="298.0" textFill="#f80b13">
+         <font>
+            <Font name="Microsoft YaHei UI" size="23.0" />
+         </font></Label>
+      <JFXToolbar layoutX="132.0" layoutY="148.0" prefHeight="25.0" prefWidth="305.0">
+         <left>
+            <JFXCheckBox fx:id="jinshanCheckBox" checkedColor="BLACK" text="金山" unCheckedColor="BLACK" BorderPane.alignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Microsoft YaHei UI" size="18.0" />
+               </font>
+            </JFXCheckBox>
+         </left>
+         <center>
+            <JFXCheckBox fx:id="youdaoCheckBox" checkedColor="BLACK" text="有道" unCheckedColor="BLACK" BorderPane.alignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Microsoft YaHei UI" size="18.0" />
+               </font>
+            </JFXCheckBox>
+         </center>
+         <right>
+            <JFXCheckBox fx:id="biyingCheckBox" checkedColor="BLACK" text="必应" unCheckedColor="BLACK" BorderPane.alignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Microsoft YaHei UI" size="18.0" />
+               </font>
+            </JFXCheckBox>
+         </right>
+      </JFXToolbar>
+      <TextArea fx:id="resultTextArea0" editable="false" layoutX="181.0" layoutY="200.0" prefHeight="120.0" prefWidth="316.0">
+         <font>
+            <Font name="Microsoft YaHei UI" size="14.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="resultTextArea1" editable="false" layoutX="181.0" layoutY="325.0" prefHeight="120.0" prefWidth="316.0">
+         <font>
+            <Font name="Microsoft YaHei UI" size="14.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="resultTextArea2" editable="false" layoutX="181.0" layoutY="449.0" prefHeight="120.0" prefWidth="316.0">
+         <font>
+            <Font name="Microsoft YaHei UI" size="14.0" />
+         </font>
+      </TextArea>
+      <ImageView fx:id="toolImage0" fitHeight="50.0" fitWidth="50.0" layoutX="113.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="toolImage1" fitHeight="50.0" fitWidth="50.0" layoutX="113.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="toolImage2" fitHeight="50.0" fitWidth="50.0" layoutX="113.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="shareImage0" fitHeight="25.0" fitWidth="25.0" layoutX="443.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/ui/share.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="favourImage0" fitHeight="25.0" fitWidth="25.0" layoutX="413.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="shareImage1" fitHeight="25.0" fitWidth="25.0" layoutX="443.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/ui/share.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="favourImage1" fitHeight="25.0" fitWidth="25.0" layoutX="413.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="shareImage2" fitHeight="25.0" fitWidth="25.0" layoutX="443.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/ui/share.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="favourImage2" fitHeight="25.0" fitWidth="25.0" layoutX="413.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton fx:id="shareButton0" layoutX="443.0" layoutY="288.0" prefHeight="25.0" prefWidth="25.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton fx:id="favourButton0" layoutX="413.0" layoutY="288.0" prefHeight="25.0" prefWidth="25.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton fx:id="shareButton1" layoutX="443.0" layoutY="414.0" prefHeight="25.0" prefWidth="25.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton fx:id="favourButton1" layoutX="413.0" layoutY="414.0" prefHeight="25.0" prefWidth="25.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton fx:id="shareButton2" layoutX="443.0" layoutY="539.0" prefHeight="23.0" prefWidth="25.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton fx:id="favourButton2" layoutX="413.0" layoutY="538.0" prefHeight="25.0" prefWidth="25.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXNodesList layoutX="533.0" layoutY="53.0" prefHeight="81.0" prefWidth="60.0">
+         <children>
+            <JFXButton fx:id="userButton" onMouseClicked="#userButtonAction" prefHeight="27.0" prefWidth="68.0" text="好友" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Microsoft YaHei" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="msgButton" onMouseClicked="#messageMouseAction" prefHeight="27.0" prefWidth="68.0" text="消息" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Microsoft YaHei" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="logoutButton" onMouseClicked="#logoutButtonAction" prefHeight="27.0" prefWidth="74.0" text="注销" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Microsoft YaHei UI" size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </JFXNodesList>
+      <JFXButton fx:id="loginButton" layoutX="533.0" layoutY="5.0" onMouseClicked="#loginButtonAction" prefHeight="40.0" prefWidth="40.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label fx:id="userLabel" layoutX="306.0" layoutY="18.0" prefHeight="23.0" prefWidth="211.0" textAlignment="RIGHT" textFill="WHITE" underline="true">
+         <font>
+            <Font name="KaiTi" size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

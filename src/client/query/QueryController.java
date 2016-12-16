@@ -15,13 +15,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.WritableImage;
+import javafx.scene.image.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.peer.CheckboxPeer;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -36,6 +42,12 @@ public class QueryController implements Initializable{
 
     //搜索结果
     private static QueryResults results = new QueryResults();
+
+    //用户头像
+    @FXML
+    public ImageView userImage;
+    @FXML
+    public Label userLabel;
 
     // 单词输入域
     @FXML
@@ -68,6 +80,24 @@ public class QueryController implements Initializable{
     @FXML
     public Button favourButton2;
 
+    //点赞图标
+    public ImageView[] favourImages = new ImageView[3];
+    @FXML
+    public ImageView favourImage0;
+    @FXML
+    public ImageView favourImage1;
+    @FXML
+    public ImageView favourImage2;
+
+    //分享图标
+    public ImageView[] shareImages = new ImageView[3];
+    @FXML
+    public ImageView shareImage0;
+    @FXML
+    public ImageView shareImage1;
+    @FXML
+    public ImageView shareImage2;
+
     //分享按钮
     public Button[] shareButtons = new Button[3];
     @FXML
@@ -82,13 +112,13 @@ public class QueryController implements Initializable{
     public Label hintLabel;
 
     //显示翻译的工具
-    public Label[] toolLabels = new Label[3];
+    public ImageView[] toolImages = new ImageView[3];
     @FXML
-    public Label toolLabel0;
+    public ImageView toolImage0;
     @FXML
-    public Label toolLabel1;
+    public ImageView toolImage1;
     @FXML
-    public Label toolLabel2;
+    public ImageView toolImage2;
 
     //功能按钮
     @FXML
@@ -100,6 +130,13 @@ public class QueryController implements Initializable{
     @FXML
     public Button msgButton;
 
+    private final String baseImagePath = Main.basePath + "\\src\\image\\";
+    private final String jinshanImagePath = baseImagePath + "ui\\jinshan.png";
+    private final String youdaoImagePath = baseImagePath + "ui\\youdao.jpg";
+    private final String biyingImagePath = baseImagePath + "ui\\biying.jpg";
+    private final String touristImagePath = baseImagePath + "ui\\tourist.png";
+    private final String favourImagePath = baseImagePath + "ui\\favour.png";
+    private final String unfavourImagePath = baseImagePath + "ui\\unfavour.png";
 
     /**
      * 返回当前单词
@@ -123,19 +160,21 @@ public class QueryController implements Initializable{
         resultTextAreas[0] = resultTextArea0;
         resultTextAreas[1] = resultTextArea1;
         resultTextAreas[2] = resultTextArea2;
-        toolLabels[0] = toolLabel0;
-        toolLabels[1] = toolLabel1;
-        toolLabels[2] = toolLabel2;
+        toolImages[0] = toolImage0;
+        toolImages[1] = toolImage1;
+        toolImages[2] = toolImage2;
         favourButtons[0] = favourButton0;
         favourButtons[1] = favourButton1;
         favourButtons[2] = favourButton2;
+        favourImages[0] = favourImage0;
+        favourImages[1] = favourImage1;
+        favourImages[2] = favourImage2;
         shareButtons[0] = shareButton0;
         shareButtons[1] = shareButton1;
         shareButtons[2] = shareButton2;
-
-        toolLabel0.setText("金山");
-        toolLabel1.setText("有道");
-        toolLabel2.setText("必应");
+        shareImages[0] = shareImage0;
+        shareImages[1] = shareImage1;
+        shareImages[2] = shareImage2;
 
         for(CheckBox checkBox: checkBoxs)
             checkBox.setSelected(true);
@@ -148,7 +187,9 @@ public class QueryController implements Initializable{
 
         for(int i = 0; i < 3; i++) {
             shareButtons[i].setVisible(false);
+            shareImages[i].setVisible(false);
             favourButtons[i].setVisible(false);
+            favourImages[i].setVisible(false);
 
             int finalI = i;
             //设置分享按钮的监听器
@@ -196,21 +237,69 @@ public class QueryController implements Initializable{
         inputTextField.setText(curWord);
         showResult();
 
+        b = false;
+        userButton.setVisible(b);
+        msgButton.setVisible(b);
+        logoutButton.setVisible(b);
+        b = true;
         //根据用户是否离线来隐藏一些控件
         if(!Main.isOnline){
-            userButton.setVisible(false);
-            msgButton.setVisible(false);
-            logoutButton.setVisible(false);
-            loginButton.setVisible(true);
+            userImage.setImage(new Image(touristImagePath));
         }
         else{
-            userButton.setVisible(true);
-            msgButton.setVisible(true);
-            logoutButton.setVisible(true);
-            loginButton.setVisible(false);
+            createUserImage();
+            userImage.setImage(new Image(baseImagePath + "user\\" + Main.userName + ".png"));
+            userLabel.setText("欢迎您，尊敬的" + Main.userName);
         }
     }
 
+    /**
+     * 随机生成用户头像
+     */
+    public void createUserImage(){
+        String username = Main.userName;
+        File f = new File("src\\image\\user\\" + username + ".png");
+        try {
+            FileReader fr = new FileReader(f);
+        } catch (FileNotFoundException e) {
+            int hash = username.hashCode();
+            String binaryString = Integer.toBinaryString(hash);
+            StringBuilder stringBuffer = new StringBuilder(binaryString);
+            String matrix = "";
+            int i,j,k;
+            for(i = 0; i < 15; i++){
+                matrix += stringBuffer.charAt(i % binaryString.length());
+            }
+            int color[] = new int[3];
+            for(j = 0; j < 3; j ++){
+                color[j] = 0;
+                for(k = 0; k < 8; k++,i++){
+                    color[j] = color[j] * 2 + stringBuffer.charAt(i % binaryString.length()) - '0';
+                }
+            }
+            BufferedImage identicon = new BufferedImage(40, 40, BufferedImage.TYPE_INT_RGB);
+            Graphics graphics = identicon.getGraphics();
+            graphics.setColor(Color.white); // 背景色
+            graphics.fillRect(0, 0, identicon.getWidth(), identicon.getHeight());
+            graphics.setColor(new Color(color[0], color[1], color[2])); // 图案前景色
+            for (i = 0; i < 5; i++) {
+                for (j = 0; j < 3; j++) {
+                    if (matrix.charAt(i*3+j) == '1') {
+                        graphics.fillRect(j * 8, i * 8, 8, 8);
+                        graphics.fillRect((4 - j)*8, i * 8, 8, 8);
+                    }
+                }
+            }
+            ImageWriter writer = ImageIO.getImageWritersByFormatName("png").next();
+            try {
+                ImageOutputStream ios = ImageIO.createImageOutputStream(f);
+                writer.setOutput(ios);
+                writer.write(identicon);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        }
+    }
 
     /**
      * 好友按钮点击事件
@@ -310,14 +399,14 @@ public class QueryController implements Initializable{
      */
     private void showResult(){
         //初始化
-        for(Label toolLabel: toolLabels)
-            toolLabel.setText("");
-        for(TextArea resultTextArea: resultTextAreas)
-            resultTextArea.setVisible(false);
-        for(Button favourButton: favourButtons)
-            favourButton.setVisible(false);
-        for(Button shareButton: shareButtons)
-            shareButton.setVisible(false);
+        for(int i = 0; i < 3; i++){
+            toolImages[i].setVisible(false);
+            resultTextAreas[i].setVisible(false);
+            favourButtons[i].setVisible(false);
+            shareButtons[i].setVisible(false);
+            favourImages[i].setVisible(false);
+            shareImages[i].setVisible(false);
+        }
 
         int index = 0;
         for(int i = 0; i < 3; i++){
@@ -349,14 +438,23 @@ public class QueryController implements Initializable{
      */
     private void showUI(String tool, int index){
         Map<String, String> name = new HashMap<>();
-        name.put("jinshan", "金山");
-        name.put("youdao", "有道");
-        name.put("biying", "必应");
-        toolLabels[index].setText(name.get(tool));
+        name.put("jinshan", jinshanImagePath);
+        name.put("youdao", youdaoImagePath);
+        name.put("biying", biyingImagePath);
+        toolImages[index].setVisible(true);
+        toolImages[index].setImage(new Image(name.get(tool)));
         resultTextAreas[index].setVisible(true);
         if(Main.isOnline) {
             favourButtons[index].setVisible(true);
             shareButtons[index].setVisible(true);
+            favourImages[index].setVisible(true);
+            if(results.getResult(tool).getUserFavour()){
+                favourImages[index].setImage(new Image(favourImagePath));
+            }
+            else{
+                favourImages[index].setImage(new Image(unfavourImagePath));
+            }
+            shareImages[index].setVisible(true);
         }
         resultTextAreas[index].setText(results.getResult(tool).getContent());
     }
@@ -366,7 +464,15 @@ public class QueryController implements Initializable{
      * 登录按钮点击事件
      * @param mouseEvent
      */
+    static boolean b = true;
     public void loginButtonAction(MouseEvent mouseEvent) {
-        Main.stageController.setStage("loginView", "queryView");
+        if(!Main.isOnline)
+            Main.stageController.setStage("loginView", "queryView");
+        else{
+            userButton.setVisible(b);
+            msgButton.setVisible(b);
+            logoutButton.setVisible(b);
+            b = !b;
+        }
     }
 }
