@@ -4,6 +4,8 @@ import client.Main;
 import client.ServerAPI;
 import client.SomeException;
 import client.user.UserController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,6 +19,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import javax.imageio.ImageIO;
@@ -182,6 +186,15 @@ public class QueryController implements Initializable{
         for(CheckBox checkBox: checkBoxs)
             checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> showResult());
 
+        //设置输入文本域监听器
+        inputTextField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode() == KeyCode.ENTER)
+                    search();
+            }
+        });
+
         for(int i = 0; i < 3; i++) {
             shareButtons[i].setVisible(false);
             shareImages[i].setVisible(false);
@@ -330,7 +343,14 @@ public class QueryController implements Initializable{
      * @param mouseEvent
      */
     @FXML
-    public void searchMouseAction(MouseEvent mouseEvent) throws IOException {
+    public void searchMouseAction(MouseEvent mouseEvent){
+        search();
+    }
+
+    /**
+     * 搜索单词
+     */
+    private void search(){
         hintLabel.setText("");
         if(!isLegal(inputTextField.getText())){
             hintLabel.setText("请输入英文单词！");
@@ -344,12 +364,10 @@ public class QueryController implements Initializable{
             return;
         }
         curWord = word;
-
         //获取点赞数
         try {
             results.setResultsFavourNum(ServerAPI.getFavoursNum(curWord));
-
-        //检查该用户之前有没有对该单词点赞
+            //检查该用户之前有没有对该单词点赞
             if(Main.isOnline) {
                 results.setResultsUserFavour(ServerAPI.getUserFavour(Main.userName, curWord));
             }
@@ -360,10 +378,8 @@ public class QueryController implements Initializable{
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-
         //根据点赞数排序
         results.sort();
-
         showResult();
     }
 
@@ -374,7 +390,7 @@ public class QueryController implements Initializable{
      * @return
      */
     private boolean isLegal(String word) {
-        Pattern pattern = Pattern.compile("[a-zA-Z]+[\\s0-9a-zA-Z]*");
+        Pattern pattern = Pattern.compile("[a-zA-Z]+[0-9a-zA-Z]*");
         Matcher matcher = pattern.matcher(word);
         return matcher.matches();
     }

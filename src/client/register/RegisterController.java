@@ -4,6 +4,7 @@ import client.Main;
 import client.ServerAPI;
 import client.SomeException;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -11,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
@@ -58,7 +61,27 @@ public class RegisterController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        userNameField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER)
+                    register();
+            }
+        });
+        passwordField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER)
+                    register();
+            }
+        });
+        repeatPasswordField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER)
+                    register();
+            }
+        });
     }
 
     /**
@@ -67,6 +90,13 @@ public class RegisterController implements Initializable{
      */
     @FXML
     public void registerEnsureMouseAction(MouseEvent mouseEvent) {
+        register();
+    }
+
+    /**
+     * 注册
+     */
+    private void register(){
         userNameHintLabel.setText("");
         passwordHintLabel.setText("");
         repeatPasswordHintLabel.setText("");
@@ -125,7 +155,6 @@ public class RegisterController implements Initializable{
         // 注册成功，将用户数据写入数据库，切换到登录界面
         Main.stageController.setStage("loginView", "registerView");
     }
-
 
     /**
      * 返回按钮点击事件
