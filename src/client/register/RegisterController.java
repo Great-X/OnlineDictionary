@@ -2,6 +2,8 @@ package client.register;
 
 import client.Main;
 import client.ServerAPI;
+import client.SomeException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -127,10 +129,24 @@ public class RegisterController implements Initializable{
 
     /**
      * 返回按钮点击事件
-     * @param mouseEvent
+     * @param actionEvent
      */
-    public void backMouseAction(MouseEvent mouseEvent) {
+    public void backAction(ActionEvent actionEvent) {
         Main.stageController.setStage("loginView", "registerView");
     }
 
+    /**
+     * 关闭界面
+     * @param actionEvent
+     */
+    public void closeAction(ActionEvent actionEvent) {
+        if(Main.isOnline) {
+            try {
+                ServerAPI.userOffline(Main.userName);
+            } catch (SomeException e) {
+                e.getMessage();
+            }
+        }
+        System.exit(0);
+    }
 }

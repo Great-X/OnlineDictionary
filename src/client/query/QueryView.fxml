@@ -12,27 +12,28 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@QueryStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.query.QueryController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" stroke="BLACK" strokeType="INSIDE" width="600.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3e50" height="50.0" stroke="BLACK" strokeType="INSIDE" width="600.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c0d3e4" height="550.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ecf0f1" height="550.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="600.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="96.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="400.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="42.0" layoutX="444.0" layoutY="72.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" layoutX="138.0" layoutY="149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="305.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cde3fb" height="400.0" layoutX="82.0" layoutY="182.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="428.0" />
-      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="查词">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3e50" height="42.0" layoutX="444.0" layoutY="72.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="37.0" layoutX="130.0" layoutY="142.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="333.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bdc3c7" height="400.0" layoutX="82.0" layoutY="182.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="428.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ecf0f1" height="25.0" layoutX="560.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="276.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="查词">
          <font>
             <Font name="Microsoft JhengHei UI" size="24.0" />
          </font>
       </Text>
-      <ImageView fx:id="userImage" fitHeight="40.0" fitWidth="40.0" layoutX="533.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="userImage" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
       <JFXTextField fx:id="inputTextField" focusColor="BLACK" layoutX="171.0" layoutY="76.0" maxWidth="305.0" minWidth="254.0" prefHeight="29.0" prefWidth="266.0" unFocusColor="#aea7a7">
          <font>
             <Font name="Berlin Sans FB" size="16.0" />
          </font></JFXTextField>
-      <ImageView fx:id="searchImage" fitHeight="25.0" fitWidth="25.0" layoutX="460.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="searchImage" fitHeight="25.0" fitWidth="25.0" layoutX="455.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/ui/search.png" />
          </image>
@@ -43,15 +44,15 @@
          </cursor></JFXButton>
       <Label layoutX="107.0" layoutY="76.0" prefHeight="35.0" prefWidth="76.0" text="INPUT:">
          <font>
-            <Font name="Bodoni MT Black Italic" size="18.0" />
+            <Font name="Agency FB Bold" size="30.0" />
          </font></Label>
-      <Label fx:id="hintLabel" layoutX="135.0" layoutY="118.0" prefHeight="30.0" prefWidth="298.0" textFill="#f80b13">
+      <Label fx:id="hintLabel" layoutX="136.0" layoutY="114.0" prefHeight="30.0" prefWidth="298.0" textFill="#e74c3c">
          <font>
             <Font name="Microsoft YaHei UI" size="23.0" />
          </font></Label>
-      <JFXToolbar layoutX="132.0" layoutY="148.0" prefHeight="25.0" prefWidth="305.0">
+      <JFXToolbar layoutX="140.0" layoutY="148.0" prefHeight="25.0" prefWidth="305.0">
          <left>
-            <JFXCheckBox fx:id="jinshanCheckBox" checkedColor="BLACK" text="金山" unCheckedColor="BLACK" BorderPane.alignment="CENTER">
+            <JFXCheckBox fx:id="jinshanCheckBox" checkedColor="#2c3e50" text="金山" textFill="#2c3e50" unCheckedColor="#95a5a6" BorderPane.alignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -61,7 +62,7 @@
             </JFXCheckBox>
          </left>
          <center>
-            <JFXCheckBox fx:id="youdaoCheckBox" checkedColor="BLACK" text="有道" unCheckedColor="BLACK" BorderPane.alignment="CENTER">
+            <JFXCheckBox fx:id="youdaoCheckBox" checkedColor="#2c3e50" text="有道" textFill="#2c3e50" unCheckedColor="#95a5a6" BorderPane.alignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -71,7 +72,7 @@
             </JFXCheckBox>
          </center>
          <right>
-            <JFXCheckBox fx:id="biyingCheckBox" checkedColor="BLACK" text="必应" unCheckedColor="BLACK" BorderPane.alignment="CENTER">
+            <JFXCheckBox fx:id="biyingCheckBox" checkedColor="#2c3e50" text="必应" textFill="#2c3e50" unCheckedColor="#95a5a6" BorderPane.alignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -117,6 +118,11 @@
          </image>
       </ImageView>
       <ImageView fx:id="favourImage2" fitHeight="25.0" fitWidth="25.0" layoutX="413.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="560.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/ui/close.png" />
+         </image>
+      </ImageView>
       <JFXButton fx:id="shareButton0" layoutX="443.0" layoutY="288.0" prefHeight="25.0" prefWidth="25.0" text=" ">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -141,7 +147,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>
-      <JFXNodesList layoutX="533.0" layoutY="53.0" prefHeight="81.0" prefWidth="60.0">
+      <JFXNodesList layoutX="10.0" layoutY="53.0" prefHeight="81.0" prefWidth="60.0">
          <children>
             <JFXButton fx:id="userButton" onMouseClicked="#userButtonAction" prefHeight="27.0" prefWidth="68.0" text="好友" textFill="WHITE">
                <cursor>
@@ -169,15 +175,15 @@
             </JFXButton>
          </children>
       </JFXNodesList>
-      <JFXButton fx:id="loginButton" layoutX="533.0" layoutY="5.0" onMouseClicked="#loginButtonAction" prefHeight="40.0" prefWidth="40.0" text=" ">
+      <JFXButton fx:id="loginButton" layoutX="10.0" layoutY="5.0" onMouseClicked="#loginButtonAction" prefHeight="40.0" prefWidth="40.0" text=" ">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label fx:id="userLabel" layoutX="306.0" layoutY="18.0" prefHeight="23.0" prefWidth="211.0" textAlignment="RIGHT" textFill="WHITE" underline="true">
-         <font>
-            <Font name="KaiTi" size="20.0" />
-         </font>
-      </Label>
+      <JFXButton layoutX="560.0" layoutY="10.0" onAction="#closeAction" prefHeight="25.0" prefWidth="25.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </Pane>

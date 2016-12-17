@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.text.*?>
@@ -10,10 +11,22 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@LoginStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.login.LoginController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="300.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c0d3e4" height="350.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="300.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cde3f8" height="132.0" layoutX="32.0" layoutY="144.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="235.0" />
-      <Text fill="WHITE" layoutX="8.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="登录">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3e50" height="50.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ecf0f1" height="350.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="300.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bdc3c7" height="132.0" layoutX="32.0" layoutY="144.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="235.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ecf0f1" height="25.0" layoutX="260.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ecf0f1" height="25.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/ui/back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="260.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/ui/close.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="127.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="登录">
          <font>
             <Font name="Microsoft JhengHei UI" size="24.0" />
          </font>
@@ -47,8 +60,17 @@
          <font>
             <Font name="Microsoft YaHei Bold" size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
-      <JFXButton layoutX="33.0" layoutY="352.0" onMouseClicked="#registerButtonAction" text="注册" textFill="WHITE" />
+      <JFXButton fx:id="registerButton" layoutX="33.0" layoutY="332.0" onMouseClicked="#registerButtonAction" prefHeight="36.0" prefWidth="235.0" text="注册" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="232.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/ui/username.png" />
@@ -59,5 +81,15 @@
             <Image url="@../../image/ui/password.png" />
          </image>
       </ImageView>
+      <JFXButton layoutX="10.0" layoutY="10.0" onAction="#backAction" prefHeight="25.0" prefWidth="25.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="260.0" layoutY="10.0" onAction="#closeAction" prefHeight="25.0" prefWidth="25.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </Pane>

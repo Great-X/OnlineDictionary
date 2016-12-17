@@ -40,8 +40,8 @@ public class MsgController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         //接受单词卡
         //cards = ServerAPI.receiveWordCard();
-        cards.add(new WordCard("hello", new File("hello.png"), "haha", null));
-        cards.add(new WordCard("hello2", new File("hello.png"), "haha2", null));
+        //cards.add(new WordCard("hello", new File("hello.png"), "haha", null));
+        //cards.add(new WordCard("hello2", new File("hello.png"), "haha2", null));
 
         msgList.setItems(FXCollections.observableArrayList(cards));
         msgList.setCellFactory(new Callback<ListView<WordCard>, ListCell<WordCard>>() {

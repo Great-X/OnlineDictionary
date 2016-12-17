@@ -3,6 +3,7 @@ package client.login;
 import client.Main;
 import client.ServerAPI;
 import client.SomeException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -69,5 +70,28 @@ public class LoginController implements Initializable{
     * */
     public void registerButtonAction(MouseEvent mouseEvent) {
         Main.stageController.setStage("registerView", "loginView");
+    }
+
+    /**
+     * 返回
+     * @param actionEvent
+     */
+    public void backAction(ActionEvent actionEvent) {
+        Main.stageController.setStage("queryView", "loginView");
+    }
+
+    /**
+     * 关闭界面
+     * @param actionEvent
+     */
+    public void closeAction(ActionEvent actionEvent) {
+        if(Main.isOnline) {
+            try {
+                ServerAPI.userOffline(Main.userName);
+            } catch (SomeException e) {
+                e.getMessage();
+            }
+        }
+        System.exit(0);
     }
 }

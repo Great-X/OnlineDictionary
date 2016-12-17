@@ -58,6 +58,7 @@ public class StageController {
             tempStage.setScene(tempScene);
             tempStage.setResizable(false);
             tempStage.setTitle("我的词典");
+            tempStage.initStyle(StageStyle.UNDECORATED);//设定窗口无边框
             tempStage.setOnCloseRequest(event -> {
                 try {
                     ServerAPI.userOffline(Main.userName);

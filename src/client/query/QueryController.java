@@ -46,8 +46,6 @@ public class QueryController implements Initializable{
     //用户头像
     @FXML
     public ImageView userImage;
-    @FXML
-    public Label userLabel;
 
     // 单词输入域
     @FXML
@@ -131,8 +129,8 @@ public class QueryController implements Initializable{
     public Button msgButton;
 
     private final String jinshanImagePath = Main.baseImagePath + "ui\\jinshan.png";
-    private final String youdaoImagePath = Main.baseImagePath + "ui\\youdao.jpg";
-    private final String biyingImagePath = Main.baseImagePath + "ui\\biying.jpg";
+    private final String youdaoImagePath = Main.baseImagePath + "ui\\youdao.png";
+    private final String biyingImagePath = Main.baseImagePath + "ui\\biying.png";
     private final String touristImagePath = Main.baseImagePath + "ui\\tourist.png";
     private final String favourImagePath = Main.baseImagePath + "ui\\favour.png";
     private final String unfavourImagePath = Main.baseImagePath + "ui\\unfavour.png";
@@ -248,7 +246,6 @@ public class QueryController implements Initializable{
         else{
             createUserImage();
             userImage.setImage(new Image(Main.baseImagePath + "user\\" + Main.userName + ".png"));
-            userLabel.setText("欢迎您，尊敬的" + Main.userName);
         }
     }
 
@@ -473,5 +470,20 @@ public class QueryController implements Initializable{
             logoutButton.setVisible(b);
             b = !b;
         }
+    }
+
+    /**
+     * 关闭界面
+     * @param actionEvent
+     */
+    public void closeAction(ActionEvent actionEvent) {
+        if(Main.isOnline) {
+            try {
+                ServerAPI.userOffline(Main.userName);
+            } catch (SomeException e) {
+                e.getMessage();
+            }
+        }
+        System.exit(0);
     }
 }
