@@ -1,5 +1,7 @@
 package client;
 
+import javafx.scene.control.Alert;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,6 +21,19 @@ public class Translate {
     public static HashMap<String, String> translate(String word) throws SomeException{
         HashMap<String, String> results = new HashMap<String, String>();
 
+        //获取必应词典释义
+        String biyingResult = null;
+        try {
+            biyingResult = biyingTranslate(word);
+            results.put("biying", biyingResult);
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("网络开小差了（>_<）");
+            alert.setContentText("请确认联网后再次打开...");
+            alert.showAndWait();
+            System.exit(-1);
+        }
+
         //获取金山词典释义
         Main.threadPool.execute(() -> {
             String jinshanResult = jinshanTranslate(word);
@@ -29,12 +44,6 @@ public class Translate {
         Main.threadPool.execute(() -> {
             String youdaoResult = youdaoTranslate(word);
             results.put("youdao", youdaoResult);
-        });
-
-        //获取必应词典释义
-        Main.threadPool.execute(() -> {
-            String biyingResult = biyingTranslate(word);
-            results.put("biying", biyingResult);
         });
 
         while(results.size() != 3)
@@ -57,39 +66,34 @@ public class Translate {
      * @param word
      * @return
      */
-    private static String biyingTranslate(String word) {
+    private static String biyingTranslate(String word) throws IOException {
         String urlString = "http://cn.bing.com/dict/search?q=" + word;
-        try {
-            String content = getHtml(urlString);
-            Pattern pattern = Pattern.compile("[\\s*\t\n\r]");
-            Matcher matcher = pattern.matcher(content);
-            content = matcher.replaceAll("");
-            pattern = Pattern.compile("<divclass=\"hd_area\">.*?<ul>(.*?)</ul>");
-            matcher = pattern.matcher(content);
-            String[] items = null;
-            String result = "";
-            if(matcher.find()){
-                items = matcher.group(1).split("</li>");
-                for(int i = 0; i < items.length; i++) {
-                    pattern = Pattern.compile("<li><spanclass=\"pos(web){0,1}\">(.*?)</span><spanclass=\"def\"><span>(.*?)</span></span>");
-                    matcher = pattern.matcher(items[i]);
-                    if(matcher.find()) {
-                        result += matcher.group(2);
-                        String strTmp = matcher.group(3);
-                        strTmp = Pattern.compile("&quot;").matcher(strTmp).replaceAll("\\\"");
-                        matcher = Pattern.compile("(.*?)</span><ahref=.*?>(.*?)</a><span>(.*?)</span><span>(.*)").matcher(strTmp);
-                        if(matcher.find())
-                            result += " " + matcher.group(1) + matcher.group(2) + matcher.group(3) + " " + matcher.group(4) + "\n";
-                        else
-                            result += " " + strTmp + "\n";
-                    }
+        String content = getHtml(urlString);
+        Pattern pattern = Pattern.compile("[\\s*\t\n\r]");
+        Matcher matcher = pattern.matcher(content);
+        content = matcher.replaceAll("");
+        pattern = Pattern.compile("<divclass=\"hd_area\">.*?<ul>(.*?)</ul>");
+        matcher = pattern.matcher(content);
+        String[] items = null;
+        String result = "";
+        if(matcher.find()){
+            items = matcher.group(1).split("</li>");
+            for(int i = 0; i < items.length; i++) {
+                pattern = Pattern.compile("<li><spanclass=\"pos(web){0,1}\">(.*?)</span><spanclass=\"def\"><span>(.*?)</span></span>");
+                matcher = pattern.matcher(items[i]);
+                if(matcher.find()) {
+                    result += matcher.group(2);
+                    String strTmp = matcher.group(3);
+                    strTmp = Pattern.compile("&quot;").matcher(strTmp).replaceAll("\\\"");
+                    matcher = Pattern.compile("(.*?)</span><ahref=.*?>(.*?)</a><span>(.*?)</span><span>(.*)").matcher(strTmp);
+                    if(matcher.find())
+                        result += " " + matcher.group(1) + matcher.group(2) + matcher.group(3) + " " + matcher.group(4) + "\n";
+                    else
+                        result += " " + strTmp + "\n";
                 }
             }
-            return result;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
+        return result;
     }
 
 
