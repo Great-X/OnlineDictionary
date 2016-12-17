@@ -64,7 +64,11 @@ public class QueryResults{
         results.sort(new Comparator<QueryResult>() {
             @Override
             public int compare(QueryResult o1, QueryResult o2) {
-                if(o1.getUserFavour() && !o2.getUserFavour())
+                if (o1.getIsSelected() && !o2.getIsSelected())
+                    return -1;
+                else if(!o1.getIsSelected() && o2.getIsSelected())
+                    return 1;
+                else if(o1.getUserFavour() && !o2.getUserFavour())
                     return -1;
                 else if(!o1.getUserFavour() && o2.getUserFavour())
                     return 1;
@@ -74,6 +78,18 @@ public class QueryResults{
         });
     }
 
+    /**
+     * 返回用户勾选的复选框的数量
+     * @return
+     */
+    public int getSelectNum(){
+        int count = 0;
+        for (int i = 0; i < 3; i++){
+            if (results.get(i).getIsSelected())
+                count ++;
+        }
+        return count;
+    }
 
 }
 
@@ -88,6 +104,8 @@ class QueryResult {
     private String content = "";
     //该用户对当前单词的点赞情况
     private Boolean userFavour = false;
+    //当前用户是否勾选了tool对应的复选框
+    private Boolean isSelected = true;
 
     /**
      * 构造函数
@@ -128,5 +146,13 @@ class QueryResult {
 
     public boolean getUserFavour(){
         return userFavour;
+    }
+
+    public void setIsSelected(boolean isSelected){
+        this.isSelected = isSelected;
+    }
+
+    public boolean getIsSelected(){
+        return isSelected;
     }
 }

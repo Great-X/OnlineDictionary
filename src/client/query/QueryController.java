@@ -91,6 +91,15 @@ public class QueryController implements Initializable{
     @FXML
     public ImageView favourImage2;
 
+    //点赞数
+    public Label[] favourNumLabels = new Label[3];
+    @FXML
+    public Label favourNumLabel0;
+    @FXML
+    public Label favourNumLabel1;
+    @FXML
+    public Label favourNumLabel2;
+
     //分享图标
     public ImageView[] shareImages = new ImageView[3];
     @FXML
@@ -170,6 +179,9 @@ public class QueryController implements Initializable{
         favourImages[0] = favourImage0;
         favourImages[1] = favourImage1;
         favourImages[2] = favourImage2;
+        favourNumLabels[0] = favourNumLabel0;
+        favourNumLabels[1] = favourNumLabel1;
+        favourNumLabels[2] = favourNumLabel2;
         shareButtons[0] = shareButton0;
         shareButtons[1] = shareButton1;
         shareButtons[2] = shareButton2;
@@ -233,6 +245,7 @@ public class QueryController implements Initializable{
                 }
                 try {
                     ServerAPI.favourAction(curWord, results.getResult(finalI).getTool(), Main.userName);
+                    showResult();
                 } catch (SomeException e) {
                     //e.printStackTrace();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -364,22 +377,6 @@ public class QueryController implements Initializable{
             return;
         }
         curWord = word;
-        //获取点赞数
-        try {
-            results.setResultsFavourNum(ServerAPI.getFavoursNum(curWord));
-            //检查该用户之前有没有对该单词点赞
-            if(Main.isOnline) {
-                results.setResultsUserFavour(ServerAPI.getUserFavour(Main.userName, curWord));
-            }
-        } catch (SomeException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("error");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-        }
-        //根据点赞数排序
-        results.sort();
         showResult();
     }
 
@@ -410,6 +407,27 @@ public class QueryController implements Initializable{
      * 根据复选框和用户点赞数量显示结果
      */
     private void showResult(){
+        //获取点赞数
+        try {
+            results.setResultsFavourNum(ServerAPI.getFavoursNum(curWord));
+            //检查该用户之前有没有对该单词点赞
+            if(Main.isOnline) {
+                results.setResultsUserFavour(ServerAPI.getUserFavour(Main.userName, curWord));
+            }
+        } catch (SomeException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("error");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+        results.getResult("jinshan").setIsSelected(jinshanCheckBox.isSelected());
+        results.getResult("youdao").setIsSelected(youdaoCheckBox.isSelected());
+        results.getResult("biying").setIsSelected(biyingCheckBox.isSelected());
+
+        //根据点赞数排序
+        results.sort();
+
         //初始化
         for(int i = 0; i < 3; i++){
             toolImages[i].setVisible(false);
@@ -418,29 +436,12 @@ public class QueryController implements Initializable{
             shareButtons[i].setVisible(false);
             favourImages[i].setVisible(false);
             shareImages[i].setVisible(false);
+            favourNumLabels[i].setText("");
         }
 
-        int index = 0;
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < results.getSelectNum(); i++){
             String tool = results.getResult(i).getTool();
-            if(tool.equals("jinshan")){
-                if(!jinshanCheckBox.isSelected())
-                    continue;
-                showUI(tool, index);
-                index ++;
-            }
-            else if(tool.equals("youdao")){
-                if(!youdaoCheckBox.isSelected())
-                    continue;
-                showUI(tool, index);
-                index ++;
-            }
-            else if(tool.equals("biying")){
-                if(!biyingCheckBox.isSelected())
-                    continue;
-                showUI(tool, index);
-                index ++;
-            }
+            showUI(tool, i);
         }
     }
     /**
@@ -466,6 +467,7 @@ public class QueryController implements Initializable{
             else{
                 favourImages[index].setImage(new Image(unfavourImagePath));
             }
+            favourNumLabels[index].setText(String.valueOf(results.getResult(index).getFavourNum()));
             shareImages[index].setVisible(true);
         }
         resultTextAreas[index].setText(results.getResult(tool).getContent());
