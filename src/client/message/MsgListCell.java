@@ -39,7 +39,7 @@ public class MsgListCell extends JFXListCell<WordCard>{
                 wordLabel.setFont(Font.font(30));
                 wordLabel.setText(item.getWord());
                 senderLabel.setFont(Font.font(15));
-                senderLabel.setText(item.getSender());
+                senderLabel.setText("Send by " + item.getSender());
             }
             setGraphic(vBox);
         }

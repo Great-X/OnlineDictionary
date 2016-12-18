@@ -283,8 +283,8 @@ public class QueryController implements Initializable{
             userImage.setImage(new Image(Main.baseImagePath + "user\\" + Main.userName + ".png"));
         }
 
-        loginButton.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (Main.isOnline && newValue == false){
+        inputTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (Main.isOnline && newValue == true){
                 userButton.setVisible(false);
                 msgButton.setVisible(false);
                 logoutButton.setVisible(false);
