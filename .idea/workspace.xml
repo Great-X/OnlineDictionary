@@ -5,8 +5,7 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/image/word_card/as.png" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/image/word_card/hello.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/ServerAPI.java" afterPath="$PROJECT_DIR$/src/client/ServerAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/register/RegisterController.java" afterPath="$PROJECT_DIR$/src/client/register/RegisterController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/query/QueryController.java" afterPath="$PROJECT_DIR$/src/client/query/QueryController.java" />
     </list>
     <list id="8188da11-cfd8-435c-9c16-399a93427642" name="Rejected commit: Default" comment="修复点赞时出现的bug" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -30,18 +29,28 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+            <state relative-caret-position="141">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerAPI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServerAPI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/ServerAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="216" column="54" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="54" />
+            <state relative-caret-position="176">
+              <caret line="221" column="40" selection-start-line="221" selection-start-column="40" selection-end-line="221" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueryController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/client/query/QueryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="261" column="25" selection-start-line="261" selection-start-column="25" selection-end-line="261" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -83,12 +92,12 @@
         <option value="$PROJECT_DIR$/src/client/StageController.java" />
         <option value="$PROJECT_DIR$/src/client/login/LoginController.java" />
         <option value="$PROJECT_DIR$/src/client/query/QueryResults.java" />
-        <option value="$PROJECT_DIR$/src/client/query/QueryController.java" />
         <option value="$PROJECT_DIR$/src/client/Translate.java" />
         <option value="$PROJECT_DIR$/src/client/message/MsgController.java" />
         <option value="$PROJECT_DIR$/src/client/user/UserController.java" />
-        <option value="$PROJECT_DIR$/src/client/ServerAPI.java" />
         <option value="$PROJECT_DIR$/src/client/register/RegisterController.java" />
+        <option value="$PROJECT_DIR$/src/client/ServerAPI.java" />
+        <option value="$PROJECT_DIR$/src/client/query/QueryController.java" />
       </list>
     </option>
   </component>
@@ -201,7 +210,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="register" />
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDictionary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDictionary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="query" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -718,7 +749,7 @@
       <workItem from="1481957481812" duration="2294000" />
       <workItem from="1481980079924" duration="2706000" />
       <workItem from="1482028605604" duration="4224000" />
-      <workItem from="1482063721767" duration="730000" />
+      <workItem from="1482063721767" duration="1179000" />
     </task>
     <task id="LOCAL-00001" summary="美化查询界面">
       <created>1481876699142</created>
@@ -804,11 +835,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482032248134</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="修复注册时重复用户名的bug">
+      <created>1482064487646</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1482064487646</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65517000" />
+    <option name="totallyTimeSpent" value="65966000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -872,7 +910,8 @@
     <MESSAGE value="新增断网事件的处理" />
     <MESSAGE value="修复点赞时出现的bug" />
     <MESSAGE value="修复查看单词卡时出现的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复查看单词卡时出现的bug" />
+    <MESSAGE value="修复注册时重复用户名的bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复注册时重复用户名的bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1120,6 +1159,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1496">
           <caret line="182" column="41" selection-start-line="182" selection-start-column="41" selection-end-line="182" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1130,6 +1170,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="617">
           <caret line="74" column="20" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1150,42 +1191,10 @@
     <entry file="file://$PROJECT_DIR$/MS0xLWhlLTE0ODIwMzA2NjE4NTcu.png" />
     <entry file="file://$PROJECT_DIR$/MS0xLWluLTE0ODIwMzA1MzI0MTAu.png" />
     <entry file="file://$PROJECT_DIR$/MS0xLWEtMTQ4MjAzMTM0NDI2Ni4=.png" />
-    <entry file="file://$PROJECT_DIR$/src/client/user/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/user/WordCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="18" column="90" selection-start-line="18" selection-start-column="79" selection-end-line="18" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/query/QueryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="227" column="113" selection-start-line="227" selection-start-column="89" selection-end-line="227" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/message/MsgController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="69" column="94" selection-start-line="69" selection-start-column="94" selection-end-line="69" selection-end-column="94" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1198,10 +1207,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/user/WordCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/user/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/ServerAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="216" column="54" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="54" />
+        <state relative-caret-position="176">
+          <caret line="221" column="40" selection-start-line="221" selection-start-column="40" selection-end-line="221" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/query/QueryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="261" column="25" selection-start-line="261" selection-start-column="25" selection-end-line="261" selection-end-column="25" />
           <folding />
         </state>
       </provider>

@@ -258,7 +258,8 @@ public class QueryController implements Initializable{
 
         //设置文本显示
         inputTextField.setText(curWord);
-        showResult();
+        if (curWord.length() != 0)
+            showResult();
 
         b = false;
         userButton.setVisible(b);
