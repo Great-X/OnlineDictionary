@@ -62,11 +62,16 @@ public class MsgController implements Initializable{
             Object[] tmp = msgList.getSelectionModel().getSelectedIndices().toArray();
             if(tmp.length > 0){
                 int no = (int)tmp[0];
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(cards.get(no).getWord());
-                alert.setContentText("send by " + cards.get(no).getSender());
-                alert.setGraphic(new ImageView(new Image(Main.baseImagePath + "word_card\\" + cards.get(no).getFile().toString())));
-                alert.showAndWait();
+                try {
+                    String fileName = ServerAPI.getReceiveCardPic(cards.get(no).getId());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(cards.get(no).getWord());
+                    alert.setContentText("send by " + cards.get(no).getSender());
+                    alert.setGraphic(new ImageView(new Image(Main.baseImagePath + "word_card\\" + fileName)));
+                    alert.showAndWait();
+                } catch (SomeException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

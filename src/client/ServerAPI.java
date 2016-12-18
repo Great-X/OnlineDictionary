@@ -274,9 +274,7 @@ public class ServerAPI {
                     System.out.println("cardStr = " + cardStr);
                     continue;
                 }
-                ArrayList<String> users = new ArrayList<>();
-                users.add(tmp[2]);
-                WordCard wc = new WordCard(tmp[1], null, null, users, 2);
+                WordCard wc = new WordCard(tmp[1], null, tmp[2],null, Integer.parseInt(tmp[0]));
                 allCard.add(wc);
             }
         } catch (Exception e) {
@@ -309,7 +307,7 @@ public class ServerAPI {
         try {
             InputStream input;
             input = response.getEntity().getContent();
-            OutputStream output = new FileOutputStream(new File(filename));
+            OutputStream output = new FileOutputStream(new File("src\\image\\word_card\\" + filename));
             IOUtils.copy(input, output);
 
             output.flush();
