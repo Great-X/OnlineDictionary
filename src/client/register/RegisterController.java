@@ -124,16 +124,6 @@ public class RegisterController implements Initializable{
             return;
         }
 
-        // 判断用户申请的用户名是否已经存在
-        try {
-            if(ServerAPI.userNameExist(username)){
-                userNameHintLabel.setText("该用户名已存在！");
-                userNameHintImage.setImage(new Image(errorImagePath));
-            }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
         // 判断两次输入的密码是否相同
         if(!password.equals(repeatPassword)){
             repeatPasswordHintLabel.setText("密码确认错误！");
@@ -148,12 +138,13 @@ public class RegisterController implements Initializable{
         //保存用户到数据库
         try {
             ServerAPI.saveUserData(username, password);
+            // 注册成功，将用户数据写入数据库，切换到登录界面
+            Main.stageController.setStage("loginView", "registerView");
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            userNameHintLabel.setText("该用户名已存在！");
+            userNameHintImage.setImage(new Image(errorImagePath));
         }
 
-        // 注册成功，将用户数据写入数据库，切换到登录界面
-        Main.stageController.setStage("loginView", "registerView");
     }
 
     /**

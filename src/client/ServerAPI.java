@@ -56,24 +56,6 @@ public class ServerAPI {
     }
 
     /**
-     * 遍历数据库，看该username是否已经存在
-     *
-     * @param username 用户名
-     * @return 若该username存在则返回true，否则返回false
-     */
-    public static boolean userNameExist(String username) throws SomeException {
-        HttpResponse response = get(baseUrl + "checkUser?username=" + username);
-        try {
-            String str = EntityUtils.toString(response.getEntity());
-            Map resMap = objectMapper.readValue(str, Map.class);
-            return (int) resMap.get("status") != 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return true;
-        }
-    }
-
-    /**
      * 注册成功，将用户数据写入数据库
      *
      * @param username 用户名
@@ -89,9 +71,10 @@ public class ServerAPI {
             Map resMap = objectMapper.readValue(str, Map.class);
             if ((int) resMap.get("status") == 0)
                 System.out.println("register successfully");
-            else
-                System.out.println((String) resMap.get("msg"));
-        } catch (Exception e) {
+            else{
+                throw new SomeException((String)resMap.get("msg"));
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
