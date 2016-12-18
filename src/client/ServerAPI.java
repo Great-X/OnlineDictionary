@@ -26,7 +26,7 @@ import org.apache.commons.io.IOUtils;
 public class ServerAPI {
     private static ObjectMapper objectMapper = new ObjectMapper();
     private static String token;
-    private static String baseUrl = "http://127.0.0.1/";
+    private static String baseUrl = "http://192.168.0.5/";
 
     /**
      * 从数据库中检查用户名和密码是否匹配
@@ -126,14 +126,14 @@ public class ServerAPI {
         userFavour.add(false);
         userFavour.add(false);
         userFavour.add(false);
-        HttpResponse response = get(baseUrl + "getLiked?token=" + token + "&word=" + word);
+        HttpResponse response = get(baseUrl + "word/getLiked?token=" + token + "&word=" + word);
         try {
             String str = EntityUtils.toString(response.getEntity());
             Map resMap = objectMapper.readValue(str, Map.class);
             if ((int) resMap.get("status") == 0) {
-                userFavour.add((boolean) resMap.get("bd"));
-                userFavour.add((boolean) resMap.get("yd"));
-                userFavour.add((boolean) resMap.get("by"));
+                userFavour.set(0, (boolean) resMap.get("bd"));
+                userFavour.set(1, (boolean) resMap.get("yd"));
+                userFavour.set(2, (boolean) resMap.get("by"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,14 +152,14 @@ public class ServerAPI {
         favoursNum.add(0);
         favoursNum.add(0);
         favoursNum.add(0);
-        HttpResponse response = get(baseUrl + "getRank?token=" + token + "&word=" + word);
+        HttpResponse response = get(baseUrl + "word/getRank?token=" + token + "&word=" + word);
         try {
             String str = EntityUtils.toString(response.getEntity());
             Map resMap = objectMapper.readValue(str, Map.class);
             if ((int) resMap.get("status") == 0) {
-                favoursNum.add((int) resMap.get("bd"));
-                favoursNum.add((int) resMap.get("yd"));
-                favoursNum.add((int) resMap.get("by"));
+                favoursNum.set(0, (int) resMap.get("bd"));
+                favoursNum.set(1, (int) resMap.get("yd"));
+                favoursNum.set(2, (int) resMap.get("by"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -191,7 +191,6 @@ public class ServerAPI {
                             continue;
                         String tmp[] = userInfo.split("-");
                         if (tmp.length < 2) {
-                            System.out.println("allUserString = " + allUserString);
                             continue;
                         }
                         String userName = tmp[1];
@@ -207,7 +206,7 @@ public class ServerAPI {
     }
 
     /**
-     * TODO:点赞行为，将点赞记录写入数据库
+     * 点赞行为，将点赞记录写入数据库
      * @param word     单词
      * @param tool     工具，指的是金山、有道、必应之一
      * @param userName 用户名
@@ -226,7 +225,7 @@ public class ServerAPI {
     }
 
     /**
-     * TODO:分享单词卡
+     * 分享单词卡
      * word 所发送的单词
      * file 被发送的单词卡图片
      * sender 发送方
@@ -253,7 +252,7 @@ public class ServerAPI {
     }
 
     /**
-     * TODO:接收单词卡
+     * 接收单词卡
      *
      * @return 返回单词卡列表
      */
