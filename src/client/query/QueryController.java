@@ -274,7 +274,6 @@ public class QueryController implements Initializable{
         userButton.setVisible(b);
         msgButton.setVisible(b);
         logoutButton.setVisible(b);
-        b = true;
         //根据用户是否离线来隐藏一些控件
         if(!Main.isOnline){
             userImage.setImage(new Image(touristImagePath));
@@ -283,6 +282,15 @@ public class QueryController implements Initializable{
             createUserImage();
             userImage.setImage(new Image(Main.baseImagePath + "user\\" + Main.userName + ".png"));
         }
+
+        loginButton.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (Main.isOnline && newValue == false){
+                userButton.setVisible(false);
+                msgButton.setVisible(false);
+                logoutButton.setVisible(false);
+                b = false;
+            }
+        });
     }
 
     /**
@@ -493,10 +501,10 @@ public class QueryController implements Initializable{
         if(!Main.isOnline)
             Main.stageController.setStage("loginView", "queryView");
         else{
+            b = !b;
             userButton.setVisible(b);
             msgButton.setVisible(b);
             logoutButton.setVisible(b);
-            b = !b;
         }
     }
 

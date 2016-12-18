@@ -11,12 +11,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.apache.commons.io.IOUtils;
@@ -303,9 +305,9 @@ public class ServerAPI {
     }
 
     private static HttpResponse post(String url, List<NameValuePair> params) throws SomeException {
-
         HttpClient httpclient = new DefaultHttpClient();
-
+        httpclient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,2000);//连接时间
+        httpclient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,2000);//数据传输时间
         HttpPost httpPost = new HttpPost(url);
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(params));
@@ -317,7 +319,9 @@ public class ServerAPI {
                 throw new SomeException(String.format("some error in server with code %d", statusCode));
             return response;
         }catch (ConnectException e){
-            throw new SomeException("can not connect to server");
+            throw new SomeException("can not connectto server");
+        }catch(ConnectTimeoutException e){
+            throw new SomeException("can not connectto server");
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -326,6 +330,8 @@ public class ServerAPI {
 
     private static HttpResponse postFile(String url, File f) throws SomeException {
         HttpClient client = new DefaultHttpClient();
+        client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,2000);//连接时间
+        client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,2000);//数据传输时间
         HttpPost httpPost = new HttpPost(url);
         try {
             FileBody fileBody = new FileBody(f);
@@ -341,7 +347,9 @@ public class ServerAPI {
             return response;
         } catch (ConnectException e){
             throw new SomeException("can not connect to server");
-        } catch (IOException e) {
+        }catch(ConnectTimeoutException e){
+            throw new SomeException("can not connectto server");
+        }  catch (IOException e) {
             System.out.println(e.toString());
             return null;
         }
@@ -349,6 +357,8 @@ public class ServerAPI {
 
     private static HttpResponse get(String url) throws SomeException {
         HttpClient httpclient = new DefaultHttpClient();
+        httpclient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,2000);//连接时间
+        httpclient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,2000);//数据传输时间
         HttpGet httpGet = new HttpGet(url);
         try {
             HttpResponse response = httpclient.execute(httpGet);
@@ -360,7 +370,9 @@ public class ServerAPI {
             return response;
         } catch (ConnectException e){
             throw new SomeException("can not connect to server");
-        } catch (IOException e) {
+        }catch(ConnectTimeoutException e){
+            throw new SomeException("can not connectto server");
+        }  catch (IOException e) {
             e.printStackTrace();
             return null;
         }
