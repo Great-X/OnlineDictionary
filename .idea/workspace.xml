@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69c77007-d1ee-4487-9399-53e368fa0657" name="Default" comment="修复点赞时出现的bug">
+    <list default="true" id="69c77007-d1ee-4487-9399-53e368fa0657" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/login/LoginView.fxml" afterPath="$PROJECT_DIR$/src/client/login/LoginView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/query/QueryController.java" afterPath="$PROJECT_DIR$/src/client/query/QueryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/user/UserController.java" afterPath="$PROJECT_DIR$/src/client/user/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client/query/QueryView.fxml" afterPath="$PROJECT_DIR$/src/client/query/QueryView.fxml" />
     </list>
     <list id="8188da11-cfd8-435c-9c16-399a93427642" name="Rejected commit: Default" comment="修复点赞时出现的bug" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -59,23 +57,37 @@
       <file leaf-file-name="Translate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/Translate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+            <state relative-caret-position="374">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/login/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="82" column="14" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
+            <state relative-caret-position="120">
+              <caret line="88" column="76" selection-start-line="88" selection-start-column="76" selection-end-line="88" selection-end-column="76" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#1508#1509#0" expanded="true" />
                 <element signature="e#1531#1532#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueryView.fxml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/client/query/QueryView.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="182" column="41" selection-start-line="182" selection-start-column="41" selection-end-line="182" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
           </provider>
         </entry>
       </file>
@@ -114,12 +126,12 @@
         <option value="$PROJECT_DIR$/src/client/message/MsgStyle.css" />
         <option value="$PROJECT_DIR$/src/client/StageController.java" />
         <option value="$PROJECT_DIR$/src/client/query/QueryResults.java" />
-        <option value="$PROJECT_DIR$/src/client/Translate.java" />
         <option value="$PROJECT_DIR$/src/client/message/MsgController.java" />
         <option value="$PROJECT_DIR$/src/client/register/RegisterController.java" />
         <option value="$PROJECT_DIR$/src/client/ServerAPI.java" />
         <option value="$PROJECT_DIR$/src/client/user/UserController.java" />
         <option value="$PROJECT_DIR$/src/client/query/QueryController.java" />
+        <option value="$PROJECT_DIR$/src/client/Translate.java" />
         <option value="$PROJECT_DIR$/src/client/login/LoginController.java" />
       </list>
     </option>
@@ -255,7 +267,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="login" />
+              <option name="myItemId" value="query" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -772,7 +784,7 @@
       <workItem from="1481957481812" duration="2294000" />
       <workItem from="1481980079924" duration="2706000" />
       <workItem from="1482028605604" duration="4224000" />
-      <workItem from="1482063721767" duration="2928000" />
+      <workItem from="1482063721767" duration="4055000" />
     </task>
     <task id="LOCAL-00001" summary="美化查询界面">
       <created>1481876699142</created>
@@ -872,11 +884,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482064936554</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="修复一些界面显示时的bug">
+      <created>1482066698761</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1482066698761</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67715000" />
+    <option name="totallyTimeSpent" value="68842000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -942,7 +961,8 @@
     <MESSAGE value="修复查看单词卡时出现的bug" />
     <MESSAGE value="修复注册时重复用户名的bug" />
     <MESSAGE value="优化单词为空时界面的显示操作" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化单词为空时界面的显示操作" />
+    <MESSAGE value="修复一些界面显示时的bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复一些界面显示时的bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1168,17 +1188,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/query/QueryView.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="182" column="41" selection-start-line="182" selection-start-column="41" selection-end-line="182" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/query/QueryResults.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="617">
@@ -1236,14 +1245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/user/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="100" column="38" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/query/QueryController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1262,21 +1263,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/Translate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+        <state relative-caret-position="374">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/user/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="100" column="38" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/login/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="82" column="14" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
+        <state relative-caret-position="120">
+          <caret line="88" column="76" selection-start-line="88" selection-start-column="76" selection-end-line="88" selection-end-column="76" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#1508#1509#0" expanded="true" />
             <element signature="e#1531#1532#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/query/QueryView.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="182" column="41" selection-start-line="182" selection-start-column="41" selection-end-line="182" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
   </component>
