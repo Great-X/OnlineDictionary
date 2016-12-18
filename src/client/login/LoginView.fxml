@@ -36,7 +36,7 @@
             <Font name="Algerian" size="40.0" />
          </font>
       </Text>
-      <Text layoutX="39.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="用户名">
+      <Text layoutX="48.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="账号">
          <font>
             <Font name="Microsoft YaHei Bold" size="18.0" />
          </font>

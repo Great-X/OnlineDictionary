@@ -206,8 +206,17 @@ public class QueryController implements Initializable{
                     search();
             }
         });
+        Map<String, String> name = new HashMap<>();
+        name.put("jinshan", jinshanImagePath);
+        name.put("youdao", youdaoImagePath);
+        name.put("biying", biyingImagePath);
+        toolImages[0].setImage(new Image(name.get("jinshan")));
+        toolImages[1].setImage(new Image(name.get("youdao")));
+        toolImages[2].setImage(new Image(name.get("biying")));
+
 
         for(int i = 0; i < 3; i++) {
+            toolImages[i].setVisible(true);
             shareButtons[i].setVisible(false);
             shareImages[i].setVisible(false);
             favourButtons[i].setVisible(false);
