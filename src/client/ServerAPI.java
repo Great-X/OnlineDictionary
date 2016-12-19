@@ -28,7 +28,7 @@ import org.apache.commons.io.IOUtils;
 public class ServerAPI {
     private static ObjectMapper objectMapper = new ObjectMapper();
     private static String token;
-    private static String baseUrl = "http://192.168.0.5/";
+    private static String baseUrl = "http://114.212.131.109/";
 
     /**
      * 从数据库中检查用户名和密码是否匹配
